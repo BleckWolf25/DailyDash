@@ -1,0 +1,66 @@
+# Project Architecture diagram
+
+```mermaid
+classDiagram
+    class TaskManagerApp {
+        +main(args: String[])
+        +start(primaryStage: Stage)
+    }
+    
+    class MainController {
+        -taskTableView: TableView~Task~
+        -taskList: TaskList
+        -dataService: TaskDataService
+        -currentTask: Task
+        +initialize()
+        +handleAddTask()
+        +handleSave()
+        +handleDeleteTask()
+    }
+    
+    class Task {
+        -id: String
+        -title: String
+        -description: String
+        -priority: Priority
+        -dueDate: LocalDate
+        -completed: boolean
+        -category: String
+        +Task()
+        +Task(title, description, priority, dueDate)
+        +isOverdue(): boolean
+        +getters/setters
+    }
+    
+    class TaskList {
+        -tasks: List~Task~
+        -name: String
+        +addTask(task: Task): boolean
+        +removeTask(task: Task): boolean
+        +getAllTasks(): List~Task~
+        +getTasksByPriority(priority: Priority): List~Task~
+        +getOverdueTasks(): List~Task~
+    }
+    
+    class TaskDataService {
+        -dbUrl: String
+        +TaskDataService()
+        +TaskDataService(dbUrl: String)
+        -initializeDatabase()
+        +saveTask(task: Task): boolean
+        +loadTasks(): TaskList
+        +deleteTask(taskId: String): boolean
+    }
+    
+    TaskManagerApp --> MainController: creates
+    MainController --> TaskList: manages
+    MainController --> TaskDataService: uses
+    TaskList --> Task: contains
+    TaskDataService --> Task: persists
+    
+    note for Task "Model class representing a task"
+    note for TaskList "Collection of tasks with filtering capabilities"
+    note for TaskDataService "Handles persistence to SQLite"
+    note for MainController "Manages UI interactions and data flow"
+    note for TaskManagerApp "Entry point for JavaFX application"
+```

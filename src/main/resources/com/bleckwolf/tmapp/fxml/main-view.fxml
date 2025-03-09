@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.bleckwolf.tmapp.app.controllers.MainController"
+            stylesheets="/css/styles.css">
+    
+    <top>
+        <HBox styleClass="toolbar" spacing="16" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="12" right="24" bottom="12" left="24"/>
+            </padding>
+            <Button fx:id="addTaskButton" text="Add Task" styleClass="primary-button" onAction="#handleAddTask"/>
+            <Button fx:id="deleteTaskButton" text="Delete Task" onAction="#handleDeleteTask"/>
+            <Separator orientation="VERTICAL" padding="0 16"/>
+            <Label text="Filter:" styleClass="section-header"/>
+            <ComboBox fx:id="filterComboBox" prefWidth="180" styleClass="combo-box"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="Search tasks..." prefWidth="240" styleClass="text-field"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="taskTableView" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="completedColumn" text="✓" prefWidth="48">
+                    <styleClass>
+                        <String fx:value="table-column"/>
+                        <String fx:value="align-center"/>
+                    </styleClass>
+                </TableColumn>
+                <TableColumn fx:id="titleColumn" text="Title" prefWidth="240"/>
+                <TableColumn fx:id="priorityColumn" text="Priority" prefWidth="120">
+                    <graphic>
+                        <StackPane styleClass="priority-indicator priority-medium"/>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="140"/>
+                <TableColumn fx:id="dueDateColumn" text="Due Date" prefWidth="140"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="120">
+                    <cellFactory>
+                        <fx:factory method="callback">
+                            <Label styleClass="status-chip"/>
+                        </fx:factory>
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="16">
+            <padding>
+                <Insets top="8" right="24" bottom="8" left="24"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Ready"/>
+            <Separator orientation="VERTICAL" padding="0 16"/>
+            <Label fx:id="taskCountLabel" text="0 tasks" styleClass="section-header"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ProgressBar fx:id="progressBar" prefWidth="160" progress="0.0"/>
+            <Label fx:id="completionRateLabel" text="0%" styleClass="section-header"/>
+        </HBox>
+    </bottom>
+
+    <right>
+        <VBox styleClass="task-details-panel" spacing="12">
+            <padding>
+                <Insets top="24" right="24" bottom="24" left="24"/>
+            </padding>
+            <Label text="Task Details" styleClass="section-header"/>
+            <Separator/>
+            
+            <Label text="Title" styleClass="input-label"/>
+            <TextField fx:id="titleField" promptText="Enter task title" styleClass="text-field"/>
+            
+            <Label text="Description" styleClass="input-label"/>
+            <TextArea fx:id="descriptionArea" promptText="Enter task description" styleClass="text-area" prefHeight="100"/>
+            
+            <Label text="Category" styleClass="input-label"/>
+            <ComboBox fx:id="categoryComboBox" editable="true" promptText="Select category" styleClass="combo-box"/>
+            
+            <Label text="Due Date" styleClass="input-label"/>
+            <DatePicker fx:id="dueDatePicker" styleClass="date-picker"/>
+            
+            <Label text="Priority" styleClass="input-label"/>
+            <HBox spacing="16" alignment="CENTER_LEFT">
+                <RadioButton fx:id="lowPriorityRadio" text="Low" toggleGroup="$priorityGroup">
+                    <graphic>
+                        <StackPane styleClass="priority-indicator priority-low"/>
+                    </graphic>
+                </RadioButton>
+                <RadioButton fx:id="mediumPriorityRadio" text="Medium" toggleGroup="$priorityGroup" selected="true">
+                    <graphic>
+                        <StackPane styleClass="priority-indicator priority-medium"/>
+                    </graphic>
+                </RadioButton>
+                <RadioButton fx:id="highPriorityRadio" text="High" toggleGroup="$priorityGroup">
+                    <graphic>
+                        <StackPane styleClass="priority-indicator priority-high"/>
+                    </graphic>
+                </RadioButton>
+            </HBox>
+            
+            <CheckBox fx:id="completedCheckBox" text="Completed" styleClass="status-checkbox"/>
+            
+            <HBox spacing="16" alignment="CENTER_RIGHT">
+                <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancel"/>
+                <Button fx:id="saveButton" text="Save" styleClass="primary-button" onAction="#handleSave"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>

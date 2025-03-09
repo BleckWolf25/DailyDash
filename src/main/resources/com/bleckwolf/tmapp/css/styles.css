@@ -1,0 +1,217 @@
+/* ==============================
+   CSS Variables & Base Styles
+   ============================== */
+   .root {
+    -fx-primary-color: #2196f3;
+    -fx-primary-dark: #1976d2;
+    -fx-secondary-color: #4caf50;
+    -fx-error-color: #d32f2f;
+    -fx-warning-color: #ff9800;
+    
+    -fx-background-light: #f8f9fa;
+    -fx-border-light: #dee2e6;
+    -fx-text-dark: #212529;
+    
+    -fx-font-family: "Segoe UI", system-ui, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    -fx-font-size: 0.875em; /* 14px equivalent */
+    font-size: 0.875em;
+    -fx-background-color: -fx-background-light;
+    background-color: -fx-background-light;
+}
+
+/* ==============================
+   Enhanced Components
+   ============================== */
+.toolbar {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 24px;
+    padding: 12px 24px;
+    -fx-spacing: 16px;
+}
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+    background-color: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+    -fx-border-radius: 6px;
+    border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 20px;
+    padding: 8px 20px;
+    -fx-text-fill: -fx-text-dark;
+    -fx-cursor: hand;
+    cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 0, 0, 0);
+    -fx-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffffff 0%, #e9ecef 100%);
+    background-color: linear-gradient(to bottom, #ffffff 0%, #e9ecef 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 0, 4, 8, 0);
+}
+
+.primary-button {
+    -fx-background-color: linear-gradient(to bottom, -fx-primary-color 0%, -fx-primary-dark 100%);
+    background-color: linear-gradient(to bottom, -fx-primary-color 0%, -fx-primary-dark 100%);
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(33,150,243,0.3), 0, 4, 8, 0);
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to bottom, -fx-primary-dark 0%, #1565c0 100%);
+    background-color: linear-gradient(to bottom, -fx-primary-dark 0%, #1565c0 100%);
+}
+
+/* ==============================
+   Data Visualization
+   ============================== */
+.table-view {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+    -fx-border-radius: 8px;
+    border-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 0, 2, 4, 0);
+}
+
+.table-row-cell {
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+    -fx-border-width: 0 0 1px 0;
+    border-width: 0 0 1px 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: #f8f9fa;
+    background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+    background-color: #e3f2fd;
+    -fx-background-insets: 0;
+}
+
+.table-row-cell:odd:filled {
+    -fx-background-color: #fcfcfc;
+    background-color: #fcfcfc;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f1f3f5;
+    background-color: #f1f3f5;
+    -fx-font-weight: 600;
+    font-weight: 600;
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+}
+
+/* ==============================
+   Status & Priority System
+   ============================== */
+.status-chip {
+    -fx-padding: 4px 12px;
+    padding: 4px 12px;
+    -fx-background-radius: 12px;
+    -fx-font-size: 0.8em;
+    font-size: 0.8em;
+    -fx-font-weight: 500;
+    font-weight: 500;
+}
+
+.status-overdue {
+    -fx-text-fill: -fx-error-color;
+    -fx-background-color: #f8d7da;
+    background-color: #f8d7da;
+}
+
+.status-today {
+    -fx-text-fill: -fx-warning-color;
+    -fx-background-color: #fff3cd;
+    background-color: #fff3cd;
+}
+
+.status-completed {
+    -fx-text-fill: -fx-secondary-color;
+    -fx-background-color: #d4edda;
+    background-color: #d4edda;
+}
+
+.priority-indicator {
+    -fx-shape: "M 0 4 L 8 4 L 4 0 Z";
+    -fx-scale-shape: false;
+    -fx-padding: 0 6px 0 0;
+    padding: 0 6px 0 0;
+}
+
+.priority-high { -fx-fill: -fx-error-color; fill: -fx-error-color; }
+.priority-medium { -fx-fill: -fx-warning-color; fill: -fx-warning-color; }
+.priority-low { -fx-fill: -fx-secondary-color; fill: -fx-secondary-color; }
+
+/* ==============================
+   Detail Panel & Typography
+   ============================== */
+.task-details-panel {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+    -fx-border-width: 0 0 0 1px;
+    border-width: 0 0 0 1px;
+    -fx-padding: 24px;
+    padding: 24px;
+    -fx-spacing: 16px;
+}
+
+.section-header {
+    -fx-font-size: 1.25em; /* 20px */
+    font-size: 1.25em; /* 20px */
+    -fx-font-weight: 600;
+    font-weight: 600;
+    -fx-text-fill: -fx-text-dark;
+    -fx-padding: 0 0 12px 0;
+    padding: 0 0 12px 0;
+}
+
+.status-bar {
+    -fx-background-color: #f8f9fa;
+    background-color: #f8f9fa;
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+    -fx-border-width: 1px 0 0 0;
+    border-width: 1px 0 0 0;
+    -fx-padding: 8px 24px;
+    padding: 8px 24px;
+}
+
+/* ==============================
+   Modern Form Elements
+   ============================== */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    border-radius: 6px;
+    -fx-border-color: -fx-border-light;
+    border-color: -fx-border-light;
+    -fx-padding: 8px 12px;
+    padding: 8px 12px;
+    -fx-font-size: 0.9em;
+    font-size: 0.9em;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: -fx-primary-color;
+    border-color: -fx-primary-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(33,150,243,0.1), 0, 0, 4, 0);
+}

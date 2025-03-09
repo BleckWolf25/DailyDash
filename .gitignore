@@ -1,0 +1,23 @@
+# Compiled class file
+*.class
+
+# Logs
+*.log
+
+# Build output directory
+/target
+/build
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Executable files
+*.jar
+
+# Operating System files
+.DS_Store
+/DS_Store
