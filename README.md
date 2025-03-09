@@ -1,4 +1,4 @@
-# Task Manager Application
+# Task Manager Application - DailyDash
 
 A JavaFX desktop application for managing tasks with features including task categorization, priority levels, due dates, and status tracking.
 
