@@ -247,6 +247,12 @@ public class MainController {
         });
     }
 
+    private Set<String> cachedCategories = new HashSet<>();
+
+    private void updateCachedCategories() {
+        cachedCategories = extractUniqueCategories();
+    }
+
     private void configureCategoryColumn() {
         categoryColumn.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getCategory())
@@ -485,10 +491,7 @@ public class MainController {
             case "Due Today" -> task -> task.getDueDate().isEqual(LocalDate.now());
             case "Overdue" -> Task::isOverdue;
             default -> {
-                if (filter.startsWith("Category: ")) {
-                    String category = filter.substring("Category: ".length());
-                    yield task -> task.getCategory().equalsIgnoreCase(category);
-                } else if (extractUniqueCategories().contains(filter)) {
+                if (extractUniqueCategories().contains(filter)) {
                     yield task -> task.getCategory().equals(filter);
                 }
                 yield task -> true;
@@ -608,6 +611,9 @@ public class MainController {
             }
             taskTableView.refresh();
         }
+
+        updateCachedCategories();
+        updateCategoryOptions();
     }
 
     private void updateCategoryOptions() {

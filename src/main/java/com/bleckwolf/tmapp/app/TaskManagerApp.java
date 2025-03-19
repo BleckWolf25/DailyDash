@@ -43,7 +43,7 @@ public class TaskManagerApp extends Application {
      */
     private Parent loadMainView() throws IOException {
         logger.debug("Loading main view from {}", FXML_MAIN_VIEW);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(FXML_MAIN_VIEW));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bleckwolf/tmapp/fxml/main-view.fxml"));
         return loader.load();
     }
 

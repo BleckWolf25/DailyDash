@@ -1,4 +1,5 @@
 module com.bleckwolf.tmapp {
+    requires javafx.media;
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;

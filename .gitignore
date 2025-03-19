@@ -7,6 +7,7 @@
 # Build output directory
 /target
 /build
+/javafx-sdk-23.0
 
 # IDE files
 .idea/
