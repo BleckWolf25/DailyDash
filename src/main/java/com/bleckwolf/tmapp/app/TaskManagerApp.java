@@ -1,6 +1,7 @@
 package com.bleckwolf.tmapp.app;
 
 import java.io.IOException;
+import java.net.URL;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,12 @@ public class TaskManagerApp extends Application {
     private static final Logger logger = LoggerFactory.getLogger(TaskManagerApp.class);
     
     // Configuration constants
-    private static final String FXML_MAIN_VIEW = "/fxml/main-view.fxml";
     private static final String APP_TITLE = "Task Manager";
     private static final int INITIAL_WIDTH = 800;
     private static final int INITIAL_HEIGHT = 600;
     private static final int MIN_WIDTH = 650;
     private static final int MIN_HEIGHT = 500;
+    private final String fxmlPath = System.getProperty("app.fxml.path", "/com/bleckwolf/tmapp/fxml/main-view.fxml");
 
     @Override
     public void start(Stage primaryStage) {
@@ -42,9 +43,17 @@ public class TaskManagerApp extends Application {
      * @throws IOException if the FXML file cannot be loaded
      */
     private Parent loadMainView() throws IOException {
-        logger.debug("Loading main view from {}", FXML_MAIN_VIEW);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bleckwolf/tmapp/fxml/main-view.fxml"));
-        return loader.load();
+        URL resource = getClass().getResource(fxmlPath);
+        if (resource == null) {
+            throw new IOException("Cannot find FXML file: " + fxmlPath);
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(resource);
+            return loader.load();
+        } catch (IOException e) {
+            logger.error("Failed to load FXML: {}", e.getMessage());
+            throw e;
+        }
     }
 
     /**

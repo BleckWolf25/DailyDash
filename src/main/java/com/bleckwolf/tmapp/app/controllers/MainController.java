@@ -129,6 +129,13 @@ public class MainController {
             registerEventHandlers();
             updateStatusDisplay();
             resetFormState();
+            
+            // Connect buttons to handlers
+            addTaskButton.setOnAction(e -> handleAddTask());
+            deleteTaskButton.setOnAction(e -> handleDeleteTask());
+            saveButton.setOnAction(e -> handleSave());
+            cancelButton.setOnAction(e -> handleCancel());
+            
         } catch (RuntimeException e) {
             handleInitializationError(e);
         }
@@ -167,8 +174,8 @@ public class MainController {
     private void initializeFilterSystem() {
         ObservableList<String> filters = FXCollections.observableArrayList(
             "All Tasks", "Active Tasks", "Completed Tasks",
-            "High Priority", "Medium Priority", "Low Priority",
-            "Due Today", "Overdue"
+            "High Priority", "Medium Priority", "Low Priority", 
+            "Due Today", STATUS_OVERDUE
         );
         filters.addAll(extractUniqueCategories());
         
@@ -245,12 +252,6 @@ public class MainController {
                 };
             }
         });
-    }
-
-    private Set<String> cachedCategories = new HashSet<>();
-
-    private void updateCachedCategories() {
-        cachedCategories = extractUniqueCategories();
     }
 
     private void configureCategoryColumn() {
@@ -489,7 +490,7 @@ public class MainController {
             case "Medium Priority" -> task -> task.getPriority() == Task.Priority.MEDIUM;
             case "Low Priority" -> task -> task.getPriority() == Task.Priority.LOW;
             case "Due Today" -> task -> task.getDueDate().isEqual(LocalDate.now());
-            case "Overdue" -> Task::isOverdue;
+            case STATUS_OVERDUE -> Task::isOverdue;
             default -> {
                 if (extractUniqueCategories().contains(filter)) {
                     yield task -> task.getCategory().equals(filter);
@@ -499,17 +500,36 @@ public class MainController {
         };
     }
 
-    private Predicate<Task> createSearchPredicate(String term) {
-        return term.isEmpty() 
-            ? task -> true 
-            : task -> {
-                String title = task.getTitle() != null ? task.getTitle().toLowerCase() : "";
-                String desc = task.getDescription() != null ? task.getDescription().toLowerCase() : "";
-                String category = task.getCategory() != null ? task.getCategory().toLowerCase() : "";
-                
-                return title.contains(term) || desc.contains(term) || category.contains(term);
-            };
+// Extract ternary operations in createSearchPredicate()
+private Predicate<Task> createSearchPredicate(String term) {
+    if (term.isEmpty()) {
+        return task -> true;
     }
+    
+    return task -> {
+        // Extract title check
+        String title = "";
+        if (task.getTitle() != null) {
+            title = task.getTitle().toLowerCase();
+        }
+
+        // Extract description check  
+        String desc = "";
+        if (task.getDescription() != null) {
+            desc = task.getDescription().toLowerCase(); 
+        }
+
+        // Extract category check
+        String category = "";
+        if (task.getCategory() != null) {
+            category = task.getCategory().toLowerCase();
+        }
+        
+        return title.contains(term) || 
+               desc.contains(term) || 
+               category.contains(term);
+    };
+}
 
     private void setPrioritySelection(Task.Priority priority) {
         switch (priority) {
@@ -612,7 +632,6 @@ public class MainController {
             taskTableView.refresh();
         }
 
-        updateCachedCategories();
         updateCategoryOptions();
     }
 

@@ -8,6 +8,7 @@
 /target
 /build
 /javafx-sdk-23.0
+dependency-reduced-pom.xml
 
 # IDE files
 .idea/

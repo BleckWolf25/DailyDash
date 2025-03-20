@@ -8,7 +8,11 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.bleckwolf.tmapp.app.controllers.MainController"
-            stylesheets="/css/styles.css">
+            stylesheets="/com/bleckwolf/tmapp/css/styles.css">
+    
+    <fx:define>
+        <ToggleGroup fx:id="priorityGroup"/>
+    </fx:define>
     
     <top>
         <HBox styleClass="toolbar" spacing="16" alignment="CENTER_LEFT">
@@ -17,7 +21,11 @@
             </padding>
             <Button fx:id="addTaskButton" text="Add Task" styleClass="primary-button" onAction="#handleAddTask"/>
             <Button fx:id="deleteTaskButton" text="Delete Task" onAction="#handleDeleteTask"/>
-            <Separator orientation="VERTICAL" padding="0 16"/>
+            <Separator orientation="VERTICAL">
+                <padding>
+                    <Insets left="0" right="16"/>
+                </padding>
+            </Separator>
             <Label text="Filter:" styleClass="section-header"/>
             <ComboBox fx:id="filterComboBox" prefWidth="180" styleClass="combo-box"/>
             <Region HBox.hgrow="ALWAYS"/>
@@ -28,12 +36,7 @@
     <center>
         <TableView fx:id="taskTableView" styleClass="table-view">
             <columns>
-                <TableColumn fx:id="completedColumn" text="✓" prefWidth="48">
-                    <styleClass>
-                        <String fx:value="table-column"/>
-                        <String fx:value="align-center"/>
-                    </styleClass>
-                </TableColumn>
+                <TableColumn fx:id="completedColumn" text="✓" prefWidth="48" styleClass="table-column align-center">
                 <TableColumn fx:id="titleColumn" text="Title" prefWidth="240"/>
                 <TableColumn fx:id="priorityColumn" text="Priority" prefWidth="120">
                     <graphic>
@@ -59,7 +62,11 @@
                 <Insets top="8" right="24" bottom="8" left="24"/>
             </padding>
             <Label fx:id="statusLabel" text="Ready"/>
-            <Separator orientation="VERTICAL" padding="0 16"/>
+            <Separator orientation="VERTICAL">
+                <padding>
+                    <Insets left="0" right="16"/>
+                </padding>
+            </Separator>
             <Label fx:id="taskCountLabel" text="0 tasks" styleClass="section-header"/>
             <Region HBox.hgrow="ALWAYS"/>
             <ProgressBar fx:id="progressBar" prefWidth="160" progress="0.0"/>
