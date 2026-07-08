@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dailydash.service.TaskDataServiceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.861 s -- in com.dailydash.service.TaskDataServiceTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.709 s -- in com.dailydash.service.TaskDataServiceTest

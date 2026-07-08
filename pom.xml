@@ -17,10 +17,11 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Dependency Versions -->
-        <javafx.version>21.0.2</javafx.version>
-        <sqlite.version>3.45.2.0</sqlite.version>
-        <junit.version>5.10.2</junit.version>
+        <javafx.version>23.0.1</javafx.version>
+        <sqlite.version>3.46.1.0</sqlite.version>
+        <junit.version>5.11.0</junit.version>
         <gluonfx.target>host</gluonfx.target>
+        <jpackage.type>exe</jpackage.type>
     </properties>
 
     <dependencies>
@@ -80,7 +81,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.14.0</version>
                 <configuration>
                     <source>21</source>
                     <target>21</target>
@@ -91,7 +92,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
+                <version>0.0.10</version>
                 <configuration>
                     <mainClass>com.dailydash.Main</mainClass>
                 </configuration>
@@ -101,7 +102,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -124,15 +125,18 @@
                                     </excludes>
                                 </filter>
                             </filters>
+                            <finalName>dailydash</finalName>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <!-- GluonFX Plugin (Builds Native Android/iOS applications via GraalVM) -->
+            
+            <!-- GluonFX Plugin (Builds Native Android/iOS/Desktop applications via GraalVM) -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
                 <artifactId>gluonfx-maven-plugin</artifactId>
-                <version>1.0.22</version>
+                <version>1.0.26</version>
                 <configuration>
                     <target>${gluonfx.target}</target>
                     <mainClass>com.dailydash.Main</mainClass>
@@ -140,19 +144,62 @@
                     <appName>DailyDash</appName>
                 </configuration>
             </plugin>
-            <!-- JPro Plugin (Allows running JavaFX natively in Web browser) -->
+
+            <!-- JPackage Plugin (Creates Windows EXE installer) -->
             <plugin>
-                <groupId>one.jpro</groupId>
-                <artifactId>jpro-maven-plugin</artifactId>
-                <version>2024.4.0</version>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>2025.01</version>
                 <configuration>
-                    <mainClassName>com.dailydash.Main</mainClassName>
+                    <input>target</input>
+                    <dest>target/dist</dest>
+                    <appversion>${project.version}</appversion>
+                    <name>DailyDash</name>
+                    <appClass>com.dailydash.Launcher</appClass>
+                    <mainJar>dailydash.jar</mainJar>
+                    <type>${jpackage.type}</type>
+                    <vendor>DailyDash</vendor>
+                    <description>${project.description}</description>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <profiles>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <jpackage.type>exe</jpackage.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>macos</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <jpackage.type>dmg</jpackage.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>linux</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <name>Linux</name>
+                </os>
+            </activation>
+            <properties>
+                <jpackage.type>deb</jpackage.type>
+            </properties>
+        </profile>
         <profile>
             <id>android</id>
             <properties>

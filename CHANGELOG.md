@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0] - 2026-07-08
 
 ### Added
+
 - Offline-first personal Kanban task manager with local SQLite database.
 - Drag-and-drop task movement between columns (To Do, In Progress, Done) and reordering within columns.
 - Workspace Analytics dashboard featuring status pie chart and priority bar chart.

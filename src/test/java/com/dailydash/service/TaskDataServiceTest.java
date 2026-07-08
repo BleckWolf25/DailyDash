@@ -23,7 +23,9 @@ import com.dailydash.model.Task;
 import com.dailydash.util.DatabaseUtil;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assumptions;
 
+import java.awt.GraphicsEnvironment;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -211,6 +213,8 @@ public class TaskDataServiceTest {
 
     @Test
     public void testFxmlLoading() throws Exception {
+        Assumptions.assumeFalse(GraphicsEnvironment.isHeadless(), "Skipping JavaFX FXML loading test in headless environments");
+
         try {
             javafx.application.Platform.startup(() -> {});
         } catch (IllegalStateException e) {
