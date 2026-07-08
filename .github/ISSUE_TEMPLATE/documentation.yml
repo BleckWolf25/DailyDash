@@ -1,0 +1,18 @@
+name: 📖 Documentation Improvement
+description: Suggest improvements to project readme, contributing guide, etc.
+title: "[DOCS]: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: Description of the Documentation Issue
+      description: What is inaccurate, missing, or needs improvement?
+      placeholder: Describe the documentation issue here.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-changes
+    attributes:
+      label: Suggested Changes
+      placeholder: What are the edits or additions you suggest?

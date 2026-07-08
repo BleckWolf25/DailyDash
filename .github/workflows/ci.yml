@@ -1,0 +1,77 @@
+name: CI/CD Build & Release
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Run Tests
+      run: mvn clean test
+
+    - name: Package Standalone Fat JAR
+      run: mvn package -DskipTests
+
+    - name: Upload Shaded JAR Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: DailyDash-Fat-JAR
+        path: target/dailydash-1.0.0.jar
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Download Build Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: DailyDash-Fat-JAR
+        path: target/
+
+    - name: Extract Release Notes from CHANGELOG
+      run: |
+        # Extract notes between the first and second ## headers in CHANGELOG.md
+        sed -n '/^## \[/,/^## \[/p' CHANGELOG.md | sed '1d;$d' > release_notes.md
+        # If empty or not found, fall back to simple header
+        if [ ! -s release_notes.md ]; then
+          echo "Release of DailyDash ${{ github.ref_name }}" > release_notes.md
+        fi
+
+    - name: Create GitHub Release & Upload Asset
+      uses: softprops/action-gh-release@v2
+      with:
+        body_path: release_notes.md
+        files: |
+          target/dailydash-1.0.0.jar
+        name: DailyDash ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
