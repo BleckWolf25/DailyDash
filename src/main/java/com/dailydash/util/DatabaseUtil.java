@@ -28,12 +28,12 @@ import java.util.Scanner;
 
 // ---------- CLASS: DatabaseUtil
 public class DatabaseUtil {
-    // The database will be saved in the "data" folder at the root of your project
-    private static final String DB_DIR = "data";
-    private static final String DB_URL = "jdbc:sqlite:" + DB_DIR + "/dailydash.db";
+    // Store the database in the user's home directory under .dailydash
+    private static final String DB_DIR = System.getProperty("user.home") + File.separator + ".dailydash";
+    private static final String DB_URL = "jdbc:sqlite:" + DB_DIR + File.separator + "dailydash.db";
 
     public static Connection getConnection() throws SQLException {
-        // Ensure the data directory exists before connecting
+        // Ensure the user data directory exists before connecting
         File dir = new File(DB_DIR);
         if (!dir.exists()) {
             dir.mkdirs();

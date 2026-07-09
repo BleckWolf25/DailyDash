@@ -21,7 +21,7 @@
         <sqlite.version>3.46.1.0</sqlite.version>
         <junit.version>5.11.0</junit.version>
         <gluonfx.target>host</gluonfx.target>
-        <jpackage.type>exe</jpackage.type>
+        <jpackage.type>EXE</jpackage.type>
     </properties>
 
     <dependencies>
@@ -145,22 +145,68 @@
                 </configuration>
             </plugin>
 
-            <!-- JPackage Plugin (Creates Windows EXE installer) -->
+            <!-- Stage only clean fat jar into input folder for jpackage -->
             <plugin>
-                <groupId>org.panteleyev</groupId>
-                <artifactId>jpackage-maven-plugin</artifactId>
-                <version>2025.01</version>
-                <configuration>
-                    <input>target</input>
-                    <dest>target/dist</dest>
-                    <appversion>${project.version}</appversion>
-                    <name>DailyDash</name>
-                    <appClass>com.dailydash.Launcher</appClass>
-                    <mainJar>dailydash.jar</mainJar>
-                    <type>${jpackage.type}</type>
-                    <vendor>DailyDash</vendor>
-                    <description>${project.description}</description>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.build.directory}/jpackage-input"/>
+                                <mkdir dir="${project.build.directory}/jpackage-input"/>
+                                <copy file="${project.build.directory}/dailydash.jar"
+                                      tofile="${project.build.directory}/jpackage-input/dailydash.jar"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Invoke JDK jpackage cleanly without absolute path bug -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>jpackage</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${java.home}/bin/jpackage</executable>
+                            <arguments>
+                                <argument>--type</argument>
+                                <argument>${jpackage.type}</argument>
+                                <argument>--input</argument>
+                                <argument>${project.build.directory}/jpackage-input</argument>
+                                <argument>--dest</argument>
+                                <argument>${project.build.directory}/dist</argument>
+                                <argument>--name</argument>
+                                <argument>DailyDash</argument>
+                                <argument>--app-version</argument>
+                                <argument>${project.version}</argument>
+                                <argument>--main-jar</argument>
+                                <argument>dailydash.jar</argument>
+                                <argument>--main-class</argument>
+                                <argument>com.dailydash.Launcher</argument>
+                                <argument>--vendor</argument>
+                                <argument>DailyDash</argument>
+                                <argument>--description</argument>
+                                <argument>${project.description}</argument>
+                                <argument>--win-shortcut</argument>
+                                <argument>--win-menu</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

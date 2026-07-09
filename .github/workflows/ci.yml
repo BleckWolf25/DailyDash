@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: DailyDash-Fat-JAR
-        path: target/dailydash-1.0.0.jar
+        path: target/dailydash.jar
 
   release:
     name: Create GitHub Release
@@ -72,7 +72,7 @@ jobs:
       with:
         body_path: release_notes.md
         files: |
-          target/dailydash-1.0.0.jar
+          target/dailydash.jar
         name: DailyDash ${{ github.ref_name }}
         draft: false
         prerelease: false
