@@ -12,7 +12,7 @@
  * into beautifully styled JavaFX nodes.
  *
  * @since 08/07/2026
- * @updated 08/07/2026
+ *
  */
 // ---------- PACKAGE
 package com.dailydash.util;
@@ -123,9 +123,15 @@ public class MarkdownRenderer {
             int nextBacktick = text.indexOf('`', idx);
 
             int nextToken = len;
-            if (nextDoubleStar != -1) nextToken = Math.min(nextToken, nextDoubleStar);
-            if (nextStar != -1 && nextStar != nextDoubleStar) nextToken = Math.min(nextToken, nextStar);
-            if (nextBacktick != -1) nextToken = Math.min(nextToken, nextBacktick);
+            if (nextDoubleStar != -1) {
+                nextToken = Math.min(nextToken, nextDoubleStar);
+            }
+            if (nextStar != -1 && nextStar != nextDoubleStar) {
+                nextToken = Math.min(nextToken, nextStar);
+            }
+            if (nextBacktick != -1) {
+                nextToken = Math.min(nextToken, nextBacktick);
+            }
 
             String normal = text.substring(idx, nextToken);
             Text t = new Text(normal);

@@ -11,7 +11,7 @@
  * Manages an ObservableList of tasks and coordinates reordering/project sorting.
  *
  * @since 07/07/2026
- * @updated 08/07/2026
+ * @updated 10/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash.model;

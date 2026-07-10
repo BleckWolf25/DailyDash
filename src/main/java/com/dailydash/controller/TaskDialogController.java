@@ -11,7 +11,7 @@
  * Detailed explanation of the file's purpose and functionality.
  *
  * @since 07/07/2026
- * @updated 07/07/2026
+ * @updated 10/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash.controller;
@@ -22,7 +22,11 @@ import com.dailydash.model.Status;
 import com.dailydash.model.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 // ---------- CLASS: TaskDialogController
@@ -43,17 +47,25 @@ public class TaskDialogController {
     public void initialize() {
         priorityComboBox.getItems().addAll(Priority.values());
         priorityComboBox.setValue(Priority.MEDIUM);
-        if (dialogTitleLabel != null) dialogTitleLabel.setText("Create New Task");
-        if (dialogSubtitleLabel != null) dialogSubtitleLabel.setText("Fill in details, markdown description, category tag, and priority.");
+        if (dialogTitleLabel != null) {
+            dialogTitleLabel.setText("Create New Task");
+        }
+        if (dialogSubtitleLabel != null) {
+            dialogSubtitleLabel.setText("Fill in details, markdown description, category tag, and priority.");
+        }
     }
 
     // NEW METHOD: Call this when opening the dialog to edit an existing task
     public void setTaskToEdit(Task task) {
         this.resultTask = task;
         this.isEditMode = true;
-        if (dialogTitleLabel != null) dialogTitleLabel.setText("Edit Task");
-        if (dialogSubtitleLabel != null) dialogSubtitleLabel.setText("Update markdown description, category tag, priority, or deadline.");
-        
+        if (dialogTitleLabel != null) {
+            dialogTitleLabel.setText("Edit Task");
+        }
+        if (dialogSubtitleLabel != null) {
+            dialogSubtitleLabel.setText("Update markdown description, category tag, priority, or deadline.");
+        }
+
         titleField.setText(task.getTitle());
         categoryField.setText(task.getCategory());
         priorityComboBox.setValue(task.getPriority());
@@ -93,7 +105,7 @@ public class TaskDialogController {
 
     @FXML
     private void handleCancel(ActionEvent event) {
-        resultTask = null; // Return null so the MainController knows we cancelled
+        resultTask = null;
         closeWindow();
     }
 

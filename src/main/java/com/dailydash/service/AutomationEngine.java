@@ -12,7 +12,7 @@
  * when tasks are created, updated, or moved between columns.
  *
  * @since 08/07/2026
- * @updated 08/07/2026
+ *
  */
 // ---------- PACKAGE
 package com.dailydash.service;
@@ -47,15 +47,21 @@ public class AutomationEngine {
     }
 
     public boolean evaluateRules(Task task, String eventType, String eventValue, TaskList taskList) {
-        if (task == null) return false;
+        if (task == null) {
+            return false;
+        }
 
         List<AutomationRule> rules = dataService.getAutomations(task.getProjectId());
-        if (rules == null || rules.isEmpty()) return false;
+        if (rules == null || rules.isEmpty()) {
+            return false;
+        }
 
         boolean modified = false;
 
         for (AutomationRule rule : rules) {
-            if (!rule.isEnabled()) continue;
+            if (!rule.isEnabled()) {
+                continue;
+            }
 
             boolean matches = matchesTrigger(task, rule, eventType, eventValue);
             if (matches) {
@@ -95,7 +101,9 @@ public class AutomationEngine {
         String actionType = rule.getActionType();
         String actionVal = rule.getActionValue();
 
-        if (actionVal == null) return false;
+        if (actionVal == null) {
+            return false;
+        }
 
         try {
             if ("SET_STATUS".equalsIgnoreCase(actionType)) {

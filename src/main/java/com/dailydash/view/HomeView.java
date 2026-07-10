@@ -68,8 +68,12 @@ public class HomeView {
             List<Task> tasks = dataService.getAllTasks(p.getId());
             totalTasks += tasks.size();
             for (Task t : tasks) {
-                if (t.getStatus() == Status.DONE) completedTasks++;
-                if ((t.getPriority() == com.dailydash.model.Priority.HIGH || t.getPriority() == com.dailydash.model.Priority.URGENT) && t.getStatus() != Status.DONE) highPriorityTasks++;
+                if (t.getStatus() == Status.DONE) {
+                    completedTasks++;
+                }
+                if ((t.getPriority() == com.dailydash.model.Priority.HIGH || t.getPriority() == com.dailydash.model.Priority.URGENT) && t.getStatus() != Status.DONE) {
+                    highPriorityTasks++;
+                }
             }
         }
 

@@ -11,7 +11,7 @@
  * Displays status distribution PieChart, priority BarChart, and project progress comparison.
  *
  * @since 08/07/2026
- * @updated 08/07/2026
+ *
  */
 // ---------- PACKAGE
 package com.dailydash.view;
@@ -68,14 +68,23 @@ public class AnalysisView {
         for (Project p : projects) {
             List<Task> tasks = dataService.getAllTasks(p.getId());
             for (Task t : tasks) {
-                if (t.getStatus() == Status.TODO) totalTodo++;
-                else if (t.getStatus() == Status.IN_PROGRESS) totalInProgress++;
-                else if (t.getStatus() == Status.DONE) totalDone++;
+                if (t.getStatus() == Status.TODO) {
+                    totalTodo++;
+                } else if (t.getStatus() == Status.IN_PROGRESS) {
+                    totalInProgress++;
+                } else if (t.getStatus() == Status.DONE) {
+                    totalDone++;
+                }
 
-                if (t.getPriority() == Priority.URGENT) urgentP++;
-                else if (t.getPriority() == Priority.HIGH) highP++;
-                else if (t.getPriority() == Priority.MEDIUM) medP++;
-                else if (t.getPriority() == Priority.LOW) lowP++;
+                if (t.getPriority() == Priority.URGENT) {
+                    urgentP++;
+                } else if (t.getPriority() == Priority.HIGH) {
+                    highP++;
+                } else if (t.getPriority() == Priority.MEDIUM) {
+                    medP++;
+                } else if (t.getPriority() == Priority.LOW) {
+                    lowP++;
+                }
             }
         }
 

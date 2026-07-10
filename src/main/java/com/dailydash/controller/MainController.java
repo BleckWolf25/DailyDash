@@ -11,7 +11,7 @@
  * Handles UI events, filters, drag-and-drop, theme configuration, and multiple-project boards.
  *
  * @since 07/07/2026
- * @updated 08/07/2026
+ * @updated 10/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash.controller;
@@ -23,7 +23,11 @@ import com.dailydash.model.Task;
 import com.dailydash.model.TaskList;
 import com.dailydash.service.AutomationEngine;
 import com.dailydash.service.TaskDataService;
-import com.dailydash.view.*;
+import com.dailydash.view.AnalysisView;
+import com.dailydash.view.AutomationsView;
+import com.dailydash.view.HomeView;
+import com.dailydash.view.ProjectsView;
+import com.dailydash.view.SettingsView;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
@@ -31,7 +35,12 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.StackPane;
@@ -205,7 +214,9 @@ public class MainController {
 
     // Apply the current theme to the root scene
     private void applyThemeStyle() {
-        if (themeToggleButton.getScene() == null) return;
+        if (themeToggleButton.getScene() == null) {
+            return;
+        }
         Parent root = themeToggleButton.getScene().getRoot();
         if (isLightTheme) {
             themeToggleButton.setText("Dark Mode");
@@ -293,7 +304,9 @@ public class MainController {
     @FXML
     public void handleDeleteProject(ActionEvent event) {
         Project selected = projectSelector.getValue();
-        if (selected == null) return;
+        if (selected == null) {
+            return;
+        }
 
         if (selected.getId() == 1) {
             com.dailydash.view.UpdateDialog.showMessageDialog("Cannot Delete Board", "The default board cannot be deleted!", isLightTheme);

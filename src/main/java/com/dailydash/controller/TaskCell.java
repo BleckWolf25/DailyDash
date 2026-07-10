@@ -11,7 +11,7 @@
  * Detailed explanation of the file's purpose and functionality.
  *
  * @since 07/07/2026
- * @updated 07/07/2026
+ * @updated 10/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash.controller;
@@ -67,7 +67,9 @@ public class TaskCell extends ListCell<Task> {
 
         // Keep the Drag-and-Drop functionality
         setOnDragDetected(event -> {
-            if (getItem() == null) return;
+            if (getItem() == null) {
+                return;
+            }
             Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
             content.putString(String.valueOf(getItem().getId()));

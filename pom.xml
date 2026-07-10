@@ -250,6 +250,9 @@
         </profile>
         <profile>
             <id>windows-installer</id>
+            <properties>
+                <jpackage.type>exe</jpackage.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -267,7 +270,7 @@
                                     <executable>${java.home}/bin/jpackage</executable>
                                     <arguments>
                                         <argument>--type</argument>
-                                        <argument>exe</argument>
+                                        <argument>${jpackage.type}</argument>
                                         <argument>--input</argument>
                                         <argument>${project.build.directory}/jpackage-input</argument>
                                         <argument>--dest</argument>

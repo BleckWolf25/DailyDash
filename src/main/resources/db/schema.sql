@@ -11,7 +11,7 @@
  * Defines the SQLite schema for tasks, projects, and settings.
  *
  * @since 07/07/2026
- * @updated 08/07/2026
+ * @updated 10/07/2026
  */
 -- Projects Table
 CREATE TABLE IF NOT EXISTS projects (

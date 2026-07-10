@@ -11,7 +11,7 @@ env:
   MAVEN_VERSION: '3.9.6'
 
 jobs:
-  # Build Windows EXE installer
+  # Build Windows EXE, MSI, and Portable ZIP + Self-Signing
   build-windows:
     runs-on: windows-latest
     steps:
@@ -37,22 +37,47 @@ jobs:
 
       - name: Build Windows EXE
         run: |
-          mvn clean package -DskipTests -Pwindows-installer
+          mvn clean package -DskipTests -Pwindows-installer -Djpackage.type=exe
           
-      - name: Upload Windows Installer
+      - name: Build Windows MSI
+        run: |
+          mvn package -DskipTests -Pwindows-installer -Djpackage.type=msi
+
+      - name: Build Windows Portable App-Image
+        run: |
+          mvn package -DskipTests -Pwindows -Djpackage.type=app-image
+
+      - name: Package Windows Portable ZIP & Self-Sign Artifacts
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "target\dist\DailyDash\*" -DestinationPath "target\dist\DailyDash-Windows-Portable.zip" -Force
+          $cert = New-SelfSignedCertificate -Type Custom -Subject "CN=DailyDash Self-Signed" -KeyUsage DigitalSignature -FriendlyName "DailyDash Code Signing" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3")
+          Get-ChildItem -Path "target\dist" -Include "*.exe","*.msi" -Recurse | ForEach-Object {
+            Set-AuthenticodeSignature -FilePath $_.FullName -Certificate $cert
+          }
+          Export-Certificate -Cert $cert -FilePath "target\dist\DailyDash-Windows-Certificate.cer"
+
+      - name: Upload Windows EXE Installer
         uses: actions/upload-artifact@v7
         with:
-          name: DailyDash-Windows-Installer
+          name: DailyDash-Windows-EXE
           path: target/dist/*.exe
           
-      - name: Upload Windows MSI
+      - name: Upload Windows MSI Installer
         uses: actions/upload-artifact@v7
-        if: always()
         with:
           name: DailyDash-Windows-MSI
           path: target/dist/*.msi
 
-  # Build macOS DMG
+      - name: Upload Windows Portable ZIP & Certificate
+        uses: actions/upload-artifact@v7
+        with:
+          name: DailyDash-Windows-Portable
+          path: |
+            target/dist/DailyDash-Windows-Portable.zip
+            target/dist/DailyDash-Windows-Certificate.cer
+
+  # Build macOS DMG, PKG, and Portable ZIP + Ad-Hoc Signing
   build-macos:
     runs-on: macos-latest
     steps:
@@ -70,15 +95,37 @@ jobs:
 
       - name: Build macOS DMG
         run: |
-          mvn clean package -DskipTests -Pmacos
+          mvn clean package -DskipTests -Pmacos -Djpackage.type=dmg
+
+      - name: Build macOS PKG
+        run: |
+          mvn package -DskipTests -Pmacos -Djpackage.type=pkg
           
+      - name: Build macOS App-Image & Ad-Hoc Sign
+        run: |
+          mvn package -DskipTests -Pmacos -Djpackage.type=app-image
+          codesign --force --deep -s - target/dist/DailyDash.app
+          cd target/dist && zip -r DailyDash-macOS-Portable.zip DailyDash.app
+
       - name: Upload macOS DMG
         uses: actions/upload-artifact@v7
         with:
           name: DailyDash-macOS-DMG
           path: target/dist/*.dmg
 
-  # Build Linux DEB
+      - name: Upload macOS PKG
+        uses: actions/upload-artifact@v7
+        with:
+          name: DailyDash-macOS-PKG
+          path: target/dist/*.pkg
+
+      - name: Upload macOS Portable ZIP
+        uses: actions/upload-artifact@v7
+        with:
+          name: DailyDash-macOS-Portable
+          path: target/dist/DailyDash-macOS-Portable.zip
+
+  # Build Linux DEB, RPM, AppImage, Portable ZIP/TAR.GZ, PKGBUILD + SHA256 Checksums
   build-linux:
     runs-on: ubuntu-latest
     steps:
@@ -97,17 +144,86 @@ jobs:
       - name: Install Linux build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y fakeroot binutils
+          sudo apt-get install -y fakeroot binutils rpm file libfuse2
           
       - name: Build Linux DEB
         run: |
-          mvn clean package -DskipTests -Plinux
+          mvn clean package -DskipTests -Plinux -Djpackage.type=deb
+
+      - name: Build Linux RPM
+        run: |
+          mvn package -DskipTests -Plinux -Djpackage.type=rpm
+
+      - name: Build Linux App-Image & Package Universal Formats
+        run: |
+          mvn package -DskipTests -Plinux -Djpackage.type=app-image
           
-      - name: Upload Linux DEB
+          # Build AppImage
+          mkdir -p target/dist/AppDir/usr
+          cp -r target/dist/DailyDash/* target/dist/AppDir/usr/
+          cat << 'EOF' > target/dist/AppDir/AppRun
+          #!/bin/bash
+          HERE="$(dirname "$(readlink -f "${0}")")"
+          exec "${HERE}/usr/bin/DailyDash" "$@"
+          EOF
+          chmod +x target/dist/AppDir/AppRun
+          cp src/main/resources/images/logo.png target/dist/AppDir/DailyDash.png
+          cat << 'EOF' > target/dist/AppDir/DailyDash.desktop
+          [Desktop Entry]
+          Name=DailyDash
+          Exec=DailyDash
+          Icon=DailyDash
+          Type=Application
+          Categories=Office;Utility;
+          EOF
+          wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          ARCH=x86_64 ./appimagetool-x86_64.AppImage --appimage-extract-and-run target/dist/AppDir target/dist/DailyDash-Linux-x86_64.AppImage
+
+          # Package Portable tar.gz & zip
+          cd target/dist
+          tar -czvf DailyDash-Linux-Portable.tar.gz DailyDash
+          zip -r DailyDash-Linux-Portable.zip DailyDash
+          cd ../..
+
+          # Create Arch Linux PKGBUILD
+          cat << 'EOF' > target/dist/PKGBUILD
+          # Maintainer: DailyDash
+          pkgname=dailydash
+          pkgver=1.0.0
+          pkgrel=1
+          pkgdesc="A simple, offline, personal Board Task Manager"
+          arch=('x86_64')
+          url="https://github.com/BleckWolf25/DailyDash"
+          license=('MIT')
+          depends=('java-runtime>=21')
+          source=("DailyDash-Linux-Portable.tar.gz")
+          sha256sums=('SKIP')
+
+          package() {
+            mkdir -p "$pkgdir/opt/dailydash"
+            cp -r "$srcdir/DailyDash/"* "$pkgdir/opt/dailydash/"
+            mkdir -p "$pkgdir/usr/bin"
+            ln -s /opt/dailydash/bin/DailyDash "$pkgdir/usr/bin/dailydash"
+          }
+          EOF
+
+          # Generate Checksums
+          cd target/dist
+          sha256sum *.deb *.rpm *.AppImage *.tar.gz *.zip PKGBUILD > SHA256SUMS
+          cd ../..
+
+      - name: Upload Linux Packages & Portable Archives
         uses: actions/upload-artifact@v7
         with:
-          name: DailyDash-Linux-DEB
-          path: target/dist/*.deb
+          name: DailyDash-Linux-Packages
+          path: |
+            target/dist/*.deb
+            target/dist/*.rpm
+            target/dist/*.AppImage
+            target/dist/DailyDash-Linux-Portable.*
+            target/dist/PKGBUILD
+            target/dist/SHA256SUMS
 
   # Build Android APK (requires GraalVM + Android SDK)
   build-android:
@@ -201,13 +317,30 @@ jobs:
           body: |
             # DailyDash Release
             
-            Download the installer for your platform:
-            - **Windows**: `DailyDash-Windows-Installer.exe` or `.msi`
-            - **macOS**: `DailyDash-macOS.dmg`
-            - **Linux**: `DailyDash-Linux.deb`
-            - **Android**: `DailyDash-Android.apk`
-            - **iOS**: `DailyDash-iOS.ipa`
+            Download the installer or package for your platform:
             
-            Just download and install - no terminal required!
+            ### Windows (Self-Signed)
+            - **Installer (EXE)**: `DailyDash-*.exe`
+            - **Installer (MSI)**: `DailyDash-*.msi`
+            - **Portable ZIP**: `DailyDash-Windows-Portable.zip`
+            - **Certificate**: `DailyDash-Windows-Certificate.cer`
+            
+            ### macOS (Ad-Hoc Signed)
+            - **Disk Image (DMG)**: `DailyDash-*.dmg`
+            - **Installer (PKG)**: `DailyDash-*.pkg`
+            - **Portable ZIP**: `DailyDash-macOS-Portable.zip`
+            
+            ### Linux
+            - **Debian / Ubuntu (DEB)**: `DailyDash-*.deb`
+            - **Fedora / RHEL / openSUSE (RPM)**: `DailyDash-*.rpm`
+            - **Universal AppImage**: `DailyDash-Linux-x86_64.AppImage`
+            - **Portable Archives**: `DailyDash-Linux-Portable.tar.gz` & `.zip`
+            - **Arch Linux**: `PKGBUILD`
+            - **Checksums**: `SHA256SUMS`
+            
+            ### Mobile (GraalVM Native)
+            - **Android (APK)**: `DailyDash.apk`
+            - **iOS (IPA)**: `DailyDash.ipa`
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

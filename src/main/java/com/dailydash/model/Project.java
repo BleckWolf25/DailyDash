@@ -11,7 +11,7 @@
  * Simple model for switching task boards, supporting ComboBox display via toString().
  *
  * @since 08/07/2026
- * @updated 08/07/2026
+ * @updated 10/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash.model;
@@ -55,8 +55,12 @@ public class Project {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Project project = (Project) o;
         return id == project.id;
     }

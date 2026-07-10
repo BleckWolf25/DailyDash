@@ -11,7 +11,7 @@
  * Provides a No-Code Rule Builder and JSON rule syntax editor for creating and managing event-driven automations.
  *
  * @since 08/07/2026
- * @updated 08/07/2026
+ *
  */
 // ---------- PACKAGE
 package com.dailydash.view;
@@ -99,7 +99,9 @@ public class AutomationsView {
         addRuleBtn.setGraphic(com.dailydash.util.IconUtil.getIcon("PLUS", 14));
         addRuleBtn.setOnAction(e -> {
             String name = ruleNameField.getText().trim();
-            if (name.isEmpty()) name = "Rule: When " + triggerTypeBox.getValue() + " -> " + actionTypeBox.getValue();
+            if (name.isEmpty()) {
+                name = "Rule: When " + triggerTypeBox.getValue() + " -> " + actionTypeBox.getValue();
+            }
             String json = "{\"trigger\":\"" + triggerTypeBox.getValue() + "\",\"triggerValue\":\"" + triggerValueField.getText() +
                     "\",\"action\":\"" + actionTypeBox.getValue() + "\",\"actionValue\":\"" + actionValueField.getText() + "\"}";
 

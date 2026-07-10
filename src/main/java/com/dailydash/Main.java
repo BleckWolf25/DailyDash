@@ -11,7 +11,7 @@
  * Detailed explanation of the file's purpose and functionality.
  *
  * @since 07/07/2026
- * @updated 07/07/2026
+ * @updated 10/07/2026 @updated 07/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash;
@@ -38,13 +38,13 @@ public class Main extends Application {
             System.err.println("Error: Could not find /fxml/main.fxml");
             System.exit(1);
         }
-        
+
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         Parent root = loader.load();
 
         // Set up the scene and stage (window)
         Scene scene = new Scene(root, 900, 600);
-        
+
         // Load CSS styling right away
         scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
 

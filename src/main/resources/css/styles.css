@@ -11,7 +11,7 @@
  * Main entry point for the application CSS.
  *
  * @since 07/07/2026
- * @updated 08/07/2026
+ * @updated 10/07/2026
  */
 /* ---------- COLOR TOKENS AND GLOBAL STYLES ---------- */
 .root {
@@ -452,6 +452,7 @@
 .priority-urgent {
     -fx-text-fill: #ba1a1a;
     -fx-font-weight: 800;
+    font-weight: 800;
 }
 
 .priority-high {
@@ -1139,34 +1140,42 @@
 /* ---------- THEME-FRIENDLY VECTOR ICONS ---------- */
 .vector-icon {
     -fx-background-color: -color-on-surface;
+    background-color: -color-on-surface;
 }
 
 /* Sidebar Nav active states */
 .sidebar-nav-button:hover .vector-icon,
 .sidebar-nav-button-active .vector-icon {
     -fx-background-color: -color-primary;
+    background-color: -color-primary;
 }
 
 /* Sidebar Toggle button states */
 .theme-toggle-button .vector-icon {
     -fx-background-color: -color-on-surface-variant;
+    background-color: -color-on-surface-variant;
 }
 .theme-toggle-button:hover .vector-icon {
     -fx-background-color: -color-on-surface;
+    background-color: -color-on-surface;
 }
 
 /* Buttons graphic colors */
 .primary-btn .vector-icon {
     -fx-background-color: -color-on-primary;
+    background-color: -color-on-primary;
 }
 
 .btn-secondary .vector-icon {
     -fx-background-color: -color-on-surface-variant;
+    background-color: -color-on-surface-variant;
 }
 .btn-secondary:hover .vector-icon {
     -fx-background-color: -color-on-surface;
+    background-color: -color-on-surface;
 }
 
 .btn-danger .vector-icon {
     -fx-background-color: -color-on-error;
+    background-color: -color-on-error;
 }

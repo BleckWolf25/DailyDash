@@ -11,7 +11,7 @@
  * Handles inserting, reading, updating, and deleting tasks, projects, and settings.
  *
  * @since 07/07/2026
- * @updated 08/07/2026
+ * @updated 10/07/2026
  */
 // ---------- PACKAGE
 package com.dailydash.service;
@@ -23,7 +23,11 @@ import com.dailydash.model.Task;
 import com.dailydash.model.Project;
 import com.dailydash.util.DatabaseUtil;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +50,7 @@ public class TaskDataService {
             pstmt.setString(6, task.getStatus().name());
             pstmt.setInt(7, task.getPosition());
             pstmt.setInt(8, task.getProjectId());
-            
+
             pstmt.executeUpdate();
 
             // Retrieve the auto-generated ID and update the Task object
@@ -81,12 +85,12 @@ public class TaskDataService {
                     } catch (Exception ex) {
                         task.setPriority(Priority.MEDIUM);
                     }
-                    
+
                     String dueDateStr = rs.getString("due_date");
                     if (dueDateStr != null && !dueDateStr.isEmpty()) {
                         task.setDueDate(LocalDate.parse(dueDateStr));
                     }
-                    
+
                     task.setStatus(Status.valueOf(rs.getString("status")));
                     task.setPosition(rs.getInt("position"));
                     task.setProjectId(rs.getInt("project_id"));
@@ -180,7 +184,9 @@ public class TaskDataService {
         }
 
         int projId = insertProject("Showcase Board (Welcome!)", true);
-        if (projId <= 0) return;
+        if (projId <= 0) {
+            return;
+        }
 
         // Task 1 (TODO)
         Task t1 = new Task(
@@ -384,7 +390,7 @@ public class TaskDataService {
         String sql = "SELECT value FROM settings WHERE key = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setString(1, key);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -401,7 +407,7 @@ public class TaskDataService {
         String sql = "INSERT INTO settings(key, value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setString(1, key);
             pstmt.setString(2, value);
             pstmt.setString(3, value);

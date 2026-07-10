@@ -92,11 +92,15 @@ public class UpdateService {
         }
 
         String tagName = extractJsonField(json, "tag_name");
-        if (tagName == null) return null;
+        if (tagName == null) {
+            return null;
+        }
 
         String cleanVersion = tagName.startsWith("v") || tagName.startsWith("V") ? tagName.substring(1) : tagName;
         String body = extractJsonField(json, "body");
-        if (body == null) body = "New version available on GitHub.";
+        if (body == null) {
+            body = "New version available on GitHub.";
+        }
 
         // Match OS asset extension
         String os = System.getProperty("os.name", "").toLowerCase();
@@ -141,16 +145,22 @@ public class UpdateService {
     private static String extractJsonField(String json, String field) {
         String key = "\"" + field + "\"\\s*:\\s*\"";
         String[] split = json.split(key);
-        if (split.length < 2) return null;
+        if (split.length < 2) {
+            return null;
+        }
         StringBuilder sb = new StringBuilder();
         String reminder = split[1];
         boolean escape = false;
         for (int i = 0; i < reminder.length(); i++) {
             char c = reminder.charAt(i);
             if (escape) {
-                if (c == 'n') sb.append('\n');
-                else if (c == 'r') sb.append('\r');
-                else sb.append(c);
+                if (c == 'n') {
+                    sb.append('\n');
+                } else if (c == 'r') {
+                    sb.append('\r');
+                } else {
+                    sb.append(c);
+                }
                 escape = false;
             } else if (c == '\\') {
                 escape = true;
@@ -171,8 +181,12 @@ public class UpdateService {
             for (int i = 0; i < length; i++) {
                 int n1 = i < v1.length ? Integer.parseInt(v1[i].replaceAll("\\D", "")) : 0;
                 int n2 = i < v2.length ? Integer.parseInt(v2[i].replaceAll("\\D", "")) : 0;
-                if (n1 > n2) return true;
-                if (n1 < n2) return false;
+                if (n1 > n2) {
+                    return true;
+                }
+                if (n1 < n2) {
+                    return false;
+                }
             }
         } catch (Exception ignored) {
             return !latestVersion.equalsIgnoreCase(currentVersion);
