@@ -21,7 +21,6 @@ package com.dailydash.view;
 import com.dailydash.service.TaskDataService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -98,13 +97,11 @@ public class SettingsView {
         clearDesc.getStyleClass().add("settings-desc");
 
         Button clearDoneBtn = new Button("Archive Completed Tasks");
-        clearDoneBtn.getStyleClass().add("btn-secondary");
+        clearDoneBtn.getStyleClass().add("secondary-btn");
         clearDoneBtn.setGraphic(com.dailydash.util.IconUtil.getIcon("ARCHIVE", 14));
         clearDoneBtn.setOnAction(e -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Archive Completed");
-            alert.setHeaderText("Completed tasks archived successfully.");
-            alert.showAndWait();
+            boolean isLight = "light".equals(dataService.getSetting("theme", "dark"));
+            com.dailydash.view.UpdateDialog.showMessageDialog("Archive Completed", "Completed tasks archived successfully.", isLight);
         });
 
         clearRow.getChildren().addAll(clearDesc, clearDoneBtn);

@@ -64,8 +64,8 @@ public class TaskDialogController {
     @FXML
     private void handleSave(ActionEvent event) {
         if (titleField.getText() == null || titleField.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Task title cannot be empty!");
-            alert.showAndWait();
+            boolean isLight = titleField.getScene() != null && titleField.getScene().getRoot().getStyleClass().contains("light-theme");
+            com.dailydash.view.UpdateDialog.showMessageDialog("Validation Error", "Task title cannot be empty!", isLight);
             return;
         }
 

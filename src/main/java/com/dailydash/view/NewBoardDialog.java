@@ -40,10 +40,11 @@ public class NewBoardDialog {
         VBox root = new VBox(20);
         root.setPadding(new Insets(24));
         root.getStyleClass().add("dialog-root");
-        root.setStyle("-fx-background-color: -color-surface;");
+        root.setStyle("-fx-background-color: #191c1e;");
 
         if (isLightTheme) {
             root.getStyleClass().add("light-theme");
+            root.setStyle("-fx-background-color: #f7f9fb;");
         }
 
         // Title & Subtitle Header
@@ -72,11 +73,11 @@ public class NewBoardDialog {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
         Button cancelBtn = new Button("Cancel");
-        cancelBtn.getStyleClass().add("btn-secondary");
+        cancelBtn.getStyleClass().add("secondary-btn");
         cancelBtn.setOnAction(e -> stage.close());
 
         Button createBtn = new Button("Create Board");
-        createBtn.getStyleClass().add("btn-primary");
+        createBtn.getStyleClass().add("primary-btn");
 
         Runnable submitAction = () -> {
             String text = nameField.getText() != null ? nameField.getText().trim() : "";

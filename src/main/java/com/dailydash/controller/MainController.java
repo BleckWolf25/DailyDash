@@ -296,8 +296,7 @@ public class MainController {
         if (selected == null) return;
 
         if (selected.getId() == 1) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "The default board cannot be deleted!");
-            alert.showAndWait();
+            com.dailydash.view.UpdateDialog.showMessageDialog("Cannot Delete Board", "The default board cannot be deleted!", isLightTheme);
             return;
         }
 

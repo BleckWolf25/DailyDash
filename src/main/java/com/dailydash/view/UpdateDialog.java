@@ -113,11 +113,7 @@ public class UpdateDialog {
                     updateBtn.setDisable(false);
                     progressBox.setVisible(false);
                     progressBox.setManaged(false);
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Update Failed");
-                    alert.setHeaderText("Failed to download update");
-                    alert.setContentText(err.getMessage());
-                    alert.showAndWait();
+                    showMessageDialog("Update Failed", "Failed to download update:\n" + err.getMessage(), isLightTheme);
                 }
             );
         });
@@ -154,13 +150,18 @@ public class UpdateDialog {
             root.setStyle("-fx-background-color: #f7f9fb;");
         }
 
+        HBox headerBox = new HBox(12);
+        headerBox.setAlignment(Pos.CENTER_LEFT);
+        Label iconLabel = new Label();
+        iconLabel.setGraphic(com.dailydash.util.IconUtil.getIcon("INFO", 22));
         Label titleLabel = new Label(title);
         titleLabel.getStyleClass().add("dialog-title");
-        titleLabel.setStyle("-fx-text-fill: -color-on-surface; -fx-font-size: 17px; -fx-font-weight: 800;");
+        titleLabel.setStyle("-fx-text-fill: -color-on-surface; -fx-font-size: 18px; -fx-font-weight: 800;");
+        headerBox.getChildren().addAll(iconLabel, titleLabel);
 
         Label msgLabel = new Label(message);
         msgLabel.setWrapText(true);
-        msgLabel.setStyle("-fx-text-fill: -color-on-surface-variant; -fx-font-size: 13.5px; -fx-line-spacing: 1.2;");
+        msgLabel.setStyle("-fx-text-fill: -color-on-surface-variant; -fx-font-size: 14px; -fx-line-spacing: 1.3;");
 
         HBox buttonBox = new HBox();
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
@@ -170,7 +171,7 @@ public class UpdateDialog {
         okBtn.setOnAction(e -> stage.close());
         buttonBox.getChildren().add(okBtn);
 
-        root.getChildren().addAll(titleLabel, msgLabel, buttonBox);
+        root.getChildren().addAll(headerBox, msgLabel, buttonBox);
 
         Scene scene = new Scene(root, 400, 200);
         try {

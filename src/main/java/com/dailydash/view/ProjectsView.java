@@ -27,7 +27,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -64,12 +63,8 @@ public class ProjectsView {
         newProjBtn.getStyleClass().add("primary-btn");
         newProjBtn.setGraphic(com.dailydash.util.IconUtil.getIcon("PLUS", 14));
         newProjBtn.setOnAction(e -> {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("New Project");
-            dialog.setHeaderText("Create a New Task Board");
-            dialog.setContentText("Project Name:");
-
-            Optional<String> result = dialog.showAndWait();
+            boolean isLight = "light".equals(dataService.getSetting("theme", "dark"));
+            Optional<String> result = com.dailydash.view.NewBoardDialog.show(isLight);
             result.ifPresent(name -> {
                 String trimmed = name.trim();
                 if (!trimmed.isEmpty()) {

@@ -47,10 +47,11 @@ public class DeleteProjectDialog {
         VBox root = new VBox(20);
         root.setPadding(new Insets(24));
         root.getStyleClass().add("dialog-root");
-        root.setStyle("-fx-background-color: -color-surface;");
+        root.setStyle("-fx-background-color: #191c1e;");
 
         if (isLightTheme) {
             root.getStyleClass().add("light-theme");
+            root.setStyle("-fx-background-color: #f7f9fb;");
         }
 
         // Title and Warning Header
@@ -73,7 +74,7 @@ public class DeleteProjectDialog {
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
 
         Button cancelBtn = new Button("Cancel");
-        cancelBtn.getStyleClass().add("btn-secondary");
+        cancelBtn.getStyleClass().add("secondary-btn");
         cancelBtn.setOnAction(e -> stage.close());
 
         Button deleteBtn = new Button("Delete Project");
