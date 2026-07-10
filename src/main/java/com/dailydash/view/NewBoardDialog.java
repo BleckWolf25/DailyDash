@@ -6,7 +6,14 @@
  * @license MIT
  *
  * @summary Custom styled dialog for creating a new board.
+ *
+ * @description
+ * Modal dialog for creating a new board with name input validation and theme support.
+ *
+ * @since 08/07/2026
+ * @updated 08/07/2026
  */
+// ---------- PACKAGE
 package com.dailydash.view;
 
 import javafx.application.Platform;

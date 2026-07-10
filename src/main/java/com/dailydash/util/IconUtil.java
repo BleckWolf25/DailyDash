@@ -1,12 +1,27 @@
+/**
+ * @file IconUtil.java
+ *
+ * @version 1.0.0
+ * @author BleckWolf25
+ * @license MIT
+ *
+ * @summary Lightweight JavaFX Icon Utility.
+ *
+ * @description
+ * Generates theme-friendly vector icons using JavaFX Region with -fx-shape.
+ *
+ * @since 08/07/2026
+ * @updated 10/07/2026
+ */
+// ---------- PACKAGE
 package com.dailydash.util;
 
+// ---------- IMPORTS
 import javafx.scene.layout.Region;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Beautiful, theme-friendly vector icon generator using JavaFX Region -fx-shape.
- */
+// ---------- CLASS: IconUtil
 public class IconUtil {
     private static final Map<String, String> ICON_PATHS = new HashMap<>();
 
@@ -33,7 +48,7 @@ public class IconUtil {
         region.setPrefSize(size, size);
         region.setMinSize(size, size);
         region.setMaxSize(size, size);
-        
+
         region.getStyleClass().add("vector-icon");
         if (styleClass != null && !styleClass.isEmpty()) {
             region.getStyleClass().add(styleClass);

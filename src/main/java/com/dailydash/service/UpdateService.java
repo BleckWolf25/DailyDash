@@ -6,9 +6,18 @@
  * @license MIT
  *
  * @summary Checks for and installs application updates from GitHub Releases.
+ *
+ * @description
+ * This service checks GitHub for the latest release of DailyDash, compares it with the current version,
+ * and if a newer version is available, it downloads the release asset and launches the installer.
+ *
+ * @since 09/07/2026
+ * @updated 10/07/2026
  */
+// ---------- PACKAGE
 package com.dailydash.service;
 
+// ---------- IMPORTS
 import javafx.application.Platform;
 
 import java.io.BufferedInputStream;
@@ -21,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
+// ---------- CLASS: UpdateService
 public class UpdateService {
 
     public static final String CURRENT_VERSION = "1.0.0";
