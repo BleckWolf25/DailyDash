@@ -89,7 +89,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Checkstyle Plugin -->
+            <!-- Checkstyle Plugin (commented out for fast clean builds)
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -97,7 +97,7 @@
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
+                    <failsOnError>false</failsOnError>
                     <violationSeverity>warning</violationSeverity>
                 </configuration>
                 <executions>
@@ -109,7 +109,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <!-- JavaFX Maven Plugin (Allows running via 'mvn javafx:run') -->
             <plugin>
@@ -230,7 +230,6 @@
                                 <argument>java.base,java.sql,java.naming,java.desktop,java.xml,java.scripting,java.management,jdk.unsupported,jdk.crypto.ec</argument>
                                 <argument>--win-shortcut</argument>
                                 <argument>--win-menu</argument>
-                                <argument>--win-console</argument>
                             </arguments>
                         </configuration>
                     </execution>

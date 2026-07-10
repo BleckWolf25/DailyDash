@@ -262,12 +262,7 @@ public class MainController {
 
     @FXML
     public void handleNewProject(ActionEvent event) {
-        TextInputDialog dialog = new TextInputDialog("New Board");
-        dialog.setTitle("Create New Board");
-        dialog.setHeaderText("Specify the name of the new Board/Project:");
-        dialog.setContentText("Name:");
-
-        Optional<String> result = dialog.showAndWait();
+        Optional<String> result = com.dailydash.view.NewBoardDialog.show(isLightTheme);
         result.ifPresent(name -> {
             String trimmed = name.trim();
             if (!trimmed.isEmpty()) {
@@ -300,13 +295,7 @@ public class MainController {
             return;
         }
 
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to delete board '" + selected.getName() + "' and all its tasks? This cannot be undone.",
-                ButtonType.YES, ButtonType.NO);
-        confirm.setTitle("Confirm Delete Board");
-        confirm.setHeaderText(null);
-        Optional<ButtonType> result = confirm.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.YES) {
+        if (com.dailydash.view.DeleteProjectDialog.show(selected, isLightTheme)) {
             dataService.deleteProject(selected.getId());
 
             // Reload projects
