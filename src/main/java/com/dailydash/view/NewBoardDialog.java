@@ -16,6 +16,7 @@
 // ---------- PACKAGE
 package com.dailydash.view;
 
+// ---------- IMPORTS
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -31,6 +32,7 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
+// ---------- CLASS: NewBoardDialog
 public class NewBoardDialog {
 
     public static Optional<String> show(boolean isLightTheme) {
