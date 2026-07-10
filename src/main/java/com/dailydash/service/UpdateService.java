@@ -195,7 +195,7 @@ public class UpdateService {
                 int status = conn.getResponseCode();
                 if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER) {
                     String newUrl = conn.getHeaderField("Location");
-                    url = new URL(newUrl);
+                    url = URI.create(newUrl).toURL();
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestProperty("User-Agent", "DailyDash-App");
                     conn.connect();
