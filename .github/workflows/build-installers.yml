@@ -7,8 +7,11 @@ on:
   workflow_dispatch:
 
 env:
-  JAVA_VERSION: '21'
+  JAVA_VERSION: '17'
   MAVEN_VERSION: '3.9.6'
+
+permissions:
+  contents: write
 
 jobs:
   # Build Windows EXE, MSI, and Portable ZIP + Self-Signing
@@ -17,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -33,23 +36,23 @@ jobs:
           echo "C:\wix" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Run Checkstyle
-        shell: pwsh
+        shell: bash
         run: mvn checkstyle:check
 
       - name: Build Windows EXE
-        shell: pwsh
+        shell: bash
         run: |
-          mvn clean package -DskipTests -Pwindows-installer -Djpackage.type=exe
+          mvn clean package -DskipTests -Pwindows-exe
           
       - name: Build Windows MSI
-        shell: pwsh
+        shell: bash
         run: |
-          mvn package -DskipTests -Pwindows-installer -Djpackage.type=msi
+          mvn package -DskipTests -Pwindows-msi
 
       - name: Build Windows Portable App-Image
-        shell: pwsh
+        shell: bash
         run: |
-          mvn package -DskipTests -Pwindows -Djpackage.type=app-image
+          mvn package -DskipTests -Pwindows-app-image
 
       - name: Package Windows Portable ZIP & Self-Sign Artifacts
         shell: pwsh
@@ -87,7 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -99,15 +102,15 @@ jobs:
 
       - name: Build macOS DMG
         run: |
-          mvn clean package -DskipTests -Pmacos -Djpackage.type=dmg
+          mvn clean package -DskipTests -Pmacos-dmg
 
       - name: Build macOS PKG
         run: |
-          mvn package -DskipTests -Pmacos -Djpackage.type=pkg
+          mvn package -DskipTests -Pmacos-pkg
           
       - name: Build macOS App-Image & Ad-Hoc Sign
         run: |
-          mvn package -DskipTests -Pmacos -Djpackage.type=app-image
+          mvn package -DskipTests -Pmacos-app-image
           codesign --force --deep -s - target/dist/DailyDash.app
           cd target/dist && zip -r DailyDash-macOS-Portable.zip DailyDash.app
 
@@ -135,7 +138,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -152,15 +155,15 @@ jobs:
           
       - name: Build Linux DEB
         run: |
-          mvn clean package -DskipTests -Plinux -Djpackage.type=deb
+          mvn clean package -DskipTests -Plinux-deb
 
       - name: Build Linux RPM
         run: |
-          mvn package -DskipTests -Plinux -Djpackage.type=rpm
+          mvn package -DskipTests -Plinux-rpm
 
       - name: Build Linux App-Image & Package Universal Formats
         run: |
-          mvn package -DskipTests -Plinux -Djpackage.type=app-image
+          mvn package -DskipTests -Plinux-app-image
           
           # Build AppImage
           mkdir -p target/dist/AppDir/usr
@@ -235,7 +238,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -250,13 +253,11 @@ jobs:
         with:
           node-version: '22'
       
-      - name: Set up GraalVM
-        uses: graalvm/setup-graalvm@v1
+      - name: Set up Gluon GraalVM
+        uses: gluonhq/setup-graalvm@master
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'graalvm-community'
-          native-image-job-reports: true
-          cache: 'maven'
+          graalvm: '22.1.0.1-Final'
+          jdk: 'java17'
       
       - name: Build Android APK
         run: |
@@ -274,7 +275,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -284,13 +285,11 @@ jobs:
       - name: Run Checkstyle
         run: mvn checkstyle:check
 
-      - name: Set up GraalVM
-        uses: graalvm/setup-graalvm@v1
+      - name: Set up Gluon GraalVM
+        uses: gluonhq/setup-graalvm@master
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'graalvm-community'
-          native-image-job-reports: true
-          cache: 'maven'
+          graalvm: '22.1.0.1-Final'
+          jdk: 'java17'
       
       - name: Build iOS IPA
         run: |
