@@ -17,7 +17,7 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Dependency Versions -->
-        <javafx.version>26.0.1</javafx.version>
+        <javafx.version>23.0.1</javafx.version>
         <sqlite.version>3.53.2.0</sqlite.version>
         <junit.version>6.1.1</junit.version>
         <gluonfx.target>host</gluonfx.target>
