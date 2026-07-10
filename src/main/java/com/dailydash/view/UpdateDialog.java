@@ -6,9 +6,17 @@
  * @license MIT
  *
  * @summary Styled Update Dialog displaying GitHub release notes and download progress.
+ *
+ * @description
+ * Modal dialog for showing update information with download progress tracking and installation handling.
+ *
+ * @since 08/07/2026
+ * @updated 08/07/2026
  */
+// ---------- PACKAGE
 package com.dailydash.view;
 
+// ---------- IMPORTS
 import com.dailydash.service.UpdateService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// ---------- CLASS: UpdateDialog
 public class UpdateDialog {
 
     public static void show(UpdateService.ReleaseInfo release, boolean isLightTheme) {

@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -74,7 +75,7 @@ public class UpdateService {
     }
 
     public static ReleaseInfo fetchLatestRelease() throws Exception {
-        URL url = new URL(LATEST_RELEASE_URL);
+        URL url = URI.create(LATEST_RELEASE_URL).toURL();
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestProperty("User-Agent", "DailyDash-App");
         conn.setRequestProperty("Accept", "application/vnd.github+json");
@@ -185,7 +186,7 @@ public class UpdateService {
     public static void downloadAndInstallAsync(ReleaseInfo release, Consumer<Double> progressCallback, Runnable onSuccess, Consumer<Exception> onError) {
         Thread thread = new Thread(() -> {
             try {
-                URL url = new URL(release.downloadUrl);
+                URL url = URI.create(release.downloadUrl).toURL();
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("User-Agent", "DailyDash-App");
                 conn.setInstanceFollowRedirects(true);
