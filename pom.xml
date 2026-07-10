@@ -12,14 +12,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Enforce Java 17 for Gluon Substrate mobile cross-compilation compatibility -->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <!-- Enforce Java 21 -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Dependency Versions -->
         <javafx.version>23.0.1</javafx.version>
-        <sqlite.version>3.53.2.0</sqlite.version>
-        <junit.version>6.1.1</junit.version>
+        <sqlite.version>3.46.1.0</sqlite.version>
+        <junit.version>5.11.0</junit.version>
         <gluonfx.target>host</gluonfx.target>
         <jpackage.type>EXE</jpackage.type>
         <jpackage.icon>src/main/resources/images/logo.png</jpackage.icon>
@@ -238,189 +238,96 @@
     </build>
 
     <profiles>
-        <!-- Backward-compatible aliases -->
         <profile>
-            <id>windows-installer</id>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
             <properties>
-                <jpackage.type>exe</jpackage.type>
+                <jpackage.type>app-image</jpackage.type>
                 <jpackage.icon>src/main/resources/images/logo.ico</jpackage.icon>
             </properties>
         </profile>
         <profile>
+            <id>windows-installer</id>
+            <properties>
+                <jpackage.type>exe</jpackage.type>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpackage</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${java.home}/bin/jpackage</executable>
+                                    <arguments>
+                                        <argument>--type</argument>
+                                        <argument>${jpackage.type}</argument>
+                                        <argument>--input</argument>
+                                        <argument>${project.build.directory}/jpackage-input</argument>
+                                        <argument>--dest</argument>
+                                        <argument>${project.build.directory}/dist</argument>
+                                        <argument>--name</argument>
+                                        <argument>DailyDash</argument>
+                                        <argument>--app-version</argument>
+                                        <argument>${project.version}</argument>
+                                        <argument>--main-jar</argument>
+                                        <argument>dailydash.jar</argument>
+                                        <argument>--main-class</argument>
+                                        <argument>com.dailydash.Launcher</argument>
+                                        <argument>--vendor</argument>
+                                        <argument>DailyDash</argument>
+                                        <argument>--description</argument>
+                                        <argument>${project.description}</argument>
+                                        <argument>--icon</argument>
+                                        <argument>src/main/resources/images/logo.ico</argument>
+                                        <argument>--add-modules</argument>
+                                        <argument>java.base,java.sql,java.naming,java.desktop,java.xml,java.scripting,java.management,jdk.unsupported,jdk.crypto.ec</argument>
+                                        <argument>--win-shortcut</argument>
+                                        <argument>--win-menu</argument>
+                                        <argument>--resource-dir</argument>
+                                        <argument>src/main/resources/installer</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>macos</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
             <properties>
                 <jpackage.type>dmg</jpackage.type>
             </properties>
         </profile>
         <profile>
             <id>linux</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <name>Linux</name>
+                </os>
+            </activation>
             <properties>
                 <jpackage.type>deb</jpackage.type>
             </properties>
         </profile>
-
-        <!-- Windows Profiles -->
-        <profile>
-            <id>windows-exe</id>
-            <properties>
-                <jpackage.type>exe</jpackage.type>
-                <jpackage.icon>src/main/resources/images/logo.ico</jpackage.icon>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <executions>
-                            <execution>
-                                <id>jpackage</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>${java.home}/bin/jpackage</executable>
-                                    <arguments>
-                                        <argument>--type</argument>
-                                        <argument>exe</argument>
-                                        <argument>--input</argument>
-                                        <argument>${project.build.directory}/jpackage-input</argument>
-                                        <argument>--dest</argument>
-                                        <argument>${project.build.directory}/dist</argument>
-                                        <argument>--name</argument>
-                                        <argument>DailyDash</argument>
-                                        <argument>--app-version</argument>
-                                        <argument>${project.version}</argument>
-                                        <argument>--main-jar</argument>
-                                        <argument>dailydash.jar</argument>
-                                        <argument>--main-class</argument>
-                                        <argument>com.dailydash.Launcher</argument>
-                                        <argument>--vendor</argument>
-                                        <argument>DailyDash</argument>
-                                        <argument>--description</argument>
-                                        <argument>${project.description}</argument>
-                                        <argument>--icon</argument>
-                                        <argument>src/main/resources/images/logo.ico</argument>
-                                        <argument>--add-modules</argument>
-                                        <argument>java.base,java.sql,java.naming,java.desktop,java.xml,java.scripting,java.management,jdk.unsupported,jdk.crypto.ec</argument>
-                                        <argument>--win-shortcut</argument>
-                                        <argument>--win-menu</argument>
-                                        <argument>--resource-dir</argument>
-                                        <argument>src/main/resources/installer</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>windows-msi</id>
-            <properties>
-                <jpackage.type>msi</jpackage.type>
-                <jpackage.icon>src/main/resources/images/logo.ico</jpackage.icon>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.2.0</version>
-                        <executions>
-                            <execution>
-                                <id>jpackage</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>${java.home}/bin/jpackage</executable>
-                                    <arguments>
-                                        <argument>--type</argument>
-                                        <argument>msi</argument>
-                                        <argument>--input</argument>
-                                        <argument>${project.build.directory}/jpackage-input</argument>
-                                        <argument>--dest</argument>
-                                        <argument>${project.build.directory}/dist</argument>
-                                        <argument>--name</argument>
-                                        <argument>DailyDash</argument>
-                                        <argument>--app-version</argument>
-                                        <argument>${project.version}</argument>
-                                        <argument>--main-jar</argument>
-                                        <argument>dailydash.jar</argument>
-                                        <argument>--main-class</argument>
-                                        <argument>com.dailydash.Launcher</argument>
-                                        <argument>--vendor</argument>
-                                        <argument>DailyDash</argument>
-                                        <argument>--description</argument>
-                                        <argument>${project.description}</argument>
-                                        <argument>--icon</argument>
-                                        <argument>src/main/resources/images/logo.ico</argument>
-                                        <argument>--add-modules</argument>
-                                        <argument>java.base,java.sql,java.naming,java.desktop,java.xml,java.scripting,java.management,jdk.unsupported,jdk.crypto.ec</argument>
-                                        <argument>--win-shortcut</argument>
-                                        <argument>--win-menu</argument>
-                                        <argument>--resource-dir</argument>
-                                        <argument>src/main/resources/installer</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>windows-app-image</id>
-            <properties>
-                <jpackage.type>app-image</jpackage.type>
-                <jpackage.icon>src/main/resources/images/logo.ico</jpackage.icon>
-            </properties>
-        </profile>
-
-        <!-- macOS Profiles -->
-        <profile>
-            <id>macos-dmg</id>
-            <properties>
-                <jpackage.type>dmg</jpackage.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>macos-pkg</id>
-            <properties>
-                <jpackage.type>pkg</jpackage.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>macos-app-image</id>
-            <properties>
-                <jpackage.type>app-image</jpackage.type>
-            </properties>
-        </profile>
-
-        <!-- Linux Profiles -->
-        <profile>
-            <id>linux-deb</id>
-            <properties>
-                <jpackage.type>deb</jpackage.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>linux-rpm</id>
-            <properties>
-                <jpackage.type>rpm</jpackage.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>linux-app-image</id>
-            <properties>
-                <jpackage.type>app-image</jpackage.type>
-            </properties>
-        </profile>
-
-        <!-- Mobile & Desktop Targets -->
         <profile>
             <id>android</id>
             <properties>
