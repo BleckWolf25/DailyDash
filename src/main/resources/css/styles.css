@@ -143,7 +143,7 @@
 }
 
 /* ---------- BUTTONS ---------- */
-.primary-btn {
+.primary-btn, .btn-primary {
     -fx-background-color: -color-primary;
     background-color: -color-primary;
     -fx-text-fill: -color-on-primary;
@@ -160,17 +160,17 @@
     border-width: 0;
 }
 
-.primary-btn:hover {
+.primary-btn:hover, .btn-primary:hover {
     -fx-background-color: derive(-color-primary, 10%);
     background-color: derive(-color-primary, 10%);
 }
 
-.primary-btn:pressed {
+.primary-btn:pressed, .btn-primary:pressed {
     -fx-background-color: derive(-color-primary, -10%);
     background-color: derive(-color-primary, -10%);
 }
 
-.btn-secondary {
+.btn-secondary, .secondary-btn {
     -fx-background-color: transparent;
     background-color: transparent;
     -fx-text-fill: -color-on-surface;
@@ -189,7 +189,7 @@
     font-size: 13px;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .secondary-btn:hover {
     -fx-background-color: -color-surface-container-high;
     background-color: -color-surface-container-high;
 }

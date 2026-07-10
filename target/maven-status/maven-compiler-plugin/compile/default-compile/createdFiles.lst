@@ -12,13 +12,17 @@ com\dailydash\util\IconUtil.class
 com\dailydash\view\AnalysisView.class
 com\dailydash\controller\TaskDialogController.class
 com\dailydash\view\DeleteProjectDialog.class
+com\dailydash\view\NewBoardDialog.class
 com\dailydash\controller\TaskCell$1.class
 com\dailydash\model\Status.class
 com\dailydash\Launcher.class
+com\dailydash\view\UpdateDialog.class
 com\dailydash\view\ProjectsView.class
+com\dailydash\service\UpdateService$ReleaseInfo.class
 com\dailydash\view\SettingsView.class
 com\dailydash\model\Priority.class
 com\dailydash\controller\TaskCell.class
+com\dailydash\service\UpdateService.class
 com\dailydash\controller\TaskDetailDialog.class
 com\dailydash\model\AutomationRule.class
 com\dailydash\model\Task.class

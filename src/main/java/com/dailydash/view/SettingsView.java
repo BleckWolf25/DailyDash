@@ -129,7 +129,7 @@ public class SettingsView {
         updateInfo.getChildren().addAll(verLabel, repoLabel);
 
         Button checkBtn = new Button("Check for Updates");
-        checkBtn.getStyleClass().add("btn-primary");
+        checkBtn.getStyleClass().add("primary-btn");
         checkBtn.setOnAction(e -> {
             checkBtn.setText("Checking...");
             checkBtn.setDisable(true);
@@ -143,11 +143,7 @@ public class SettingsView {
                 msg -> {
                     checkBtn.setText("Check for Updates");
                     checkBtn.setDisable(false);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Update Check");
-                    alert.setHeaderText(null);
-                    alert.setContentText(msg);
-                    alert.showAndWait();
+                    com.dailydash.view.UpdateDialog.showMessageDialog("Update Status", msg, isLight);
                 }
             );
         });

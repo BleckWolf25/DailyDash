@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <delete dir="C:\Users\joaoc\programming\personal\DailyDash\target/jpackage-input" />
+    <mkdir dir="C:\Users\joaoc\programming\personal\DailyDash\target/jpackage-input" />
+    <copy file="C:\Users\joaoc\programming\personal\DailyDash\target/dailydash.jar" tofile="C:\Users\joaoc\programming\personal\DailyDash\target/jpackage-input/dailydash.jar" />
+  </target>
+</project>

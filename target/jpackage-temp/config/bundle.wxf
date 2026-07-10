@@ -1,0 +1,1166 @@
+<?xml version="1.0" ?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <Fragment>
+    <ComponentGroup Id="FileAssociations"></ComponentGroup>
+    <DirectoryRef Id="dir067f834bb66033e3860026f1f5b758e8">
+      <Component Bitness="always64" Guid="{3e5d90c7-7b59-326d-acce-758d61f04e72}" Id="cshortcut3e5d90c77b59326dacce758d61f04e72" Condition="JP_INSTALL_STARTMENU_SHORTCUT">
+        <RegistryKey Root="HKCU" Key="Software\Unknown\DailyDash\1.0.0">
+          <RegistryValue Type="string" KeyPath="yes" Name="ProductCode" Value="[ProductCode]"></RegistryValue>
+        </RegistryKey>
+        <RemoveFolder Id="rm83e833d5e9ce3033827c5edd9531e335_1" On="uninstall"></RemoveFolder>
+        <Shortcut Id="shortcut3e5d90c77b59326dacce758d61f04e72" Name="DailyDash" WorkingDirectory="INSTALLDIR" Advertise="no" Target="[#file8cd7d8dd106c331d9a69d415953423fd]"></Shortcut>
+      </Component>
+    </DirectoryRef>
+    <StandardDirectory Id="DesktopFolder">
+      <Component Bitness="always64" Guid="{b55e95ea-679d-3918-be16-6116a4844bed}" Id="cshortcutb55e95ea679d3918be166116a4844bed" Condition="JP_INSTALL_DESKTOP_SHORTCUT">
+        <RegistryKey Root="HKCU" Key="Software\Unknown\DailyDash\1.0.0">
+          <RegistryValue Type="string" KeyPath="yes" Name="ProductCode" Value="[ProductCode]"></RegistryValue>
+        </RegistryKey>
+        <Shortcut Id="shortcutb55e95ea679d3918be166116a4844bed" Name="DailyDash" WorkingDirectory="INSTALLDIR" Advertise="no" Target="[#file8cd7d8dd106c331d9a69d415953423fd]"></Shortcut>
+      </Component>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="dir067f834bb66033e3860026f1f5b758e8" Name="Unknown"></Directory>
+    </StandardDirectory>
+    <ComponentGroup Id="Shortcuts">
+      <ComponentRef Id="cshortcut3e5d90c77b59326dacce758d61f04e72"></ComponentRef>
+      <ComponentRef Id="cshortcutb55e95ea679d3918be166116a4844bed"></ComponentRef>
+    </ComponentGroup>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{2ff3e3eb-e7d4-3ca9-9ae3-624aba9bece1}" Id="cfile2ff3e3ebe7d43ca99ae3624aba9bece1">
+        <File Id="file2ff3e3ebe7d43ca99ae3624aba9bece1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\icu.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{e7fe97df-1fef-334c-aa82-2bd7732c5812}" Id="cfilee7fe97df1fef334caa822bd7732c5812">
+        <File Id="filee7fe97df1fef334caa822bd7732c5812" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\splashscreen.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{04a8f862-de0d-3915-a1af-b25a95ff4bb1}" Id="cfile04a8f862de0d3915a1afb25a95ff4bb1">
+        <File Id="file04a8f862de0d3915a1afb25a95ff4bb1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\jvm.lib"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{ea93ac6a-a176-3cd0-847a-f7fef0d1dceb}" Id="cfileea93ac6aa1763cd0847af7fef0d1dceb">
+        <File Id="fileea93ac6aa1763cd0847af7fef0d1dceb" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-namedpipe-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{96ab140b-66c2-3758-8f0e-762bd982bec5}" Id="cfile96ab140b66c237588f0e762bd982bec5">
+        <File Id="file96ab140b66c237588f0e762bd982bec5" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-file-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{69b7c6bd-78ba-366e-81ad-fa136c715587}" Id="cfile69b7c6bd78ba366e81adfa136c715587">
+        <File Id="file69b7c6bd78ba366e81adfa136c715587" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dird4162455a905351ba4c81d5bef13ee9b">
+      <Component Bitness="always64" Guid="{3d6be93c-7107-3489-9582-a0c89efbd4d5}" Id="cfile3d6be93c710734899582a0c89efbd4d5">
+        <File Id="file3d6be93c710734899582a0c89efbd4d5" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.security.sasl\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{20610d62-842a-3983-af56-1cd4ad1966dd}" Id="cfile20610d62842a3983af561cd4ad1966dd">
+        <File Id="file20610d62842a3983af561cd4ad1966dd" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\wepoll.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir162e27f67daa35a5967791019ecd6775">
+      <Component Bitness="always64" Guid="{4e975aba-8f56-3264-877f-7aa3ac710384}" Id="cfile4e975aba8f563264877f7aa3ac710384">
+        <File Id="file4e975aba8f563264877f7aa3ac710384" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\policy\limited\default_local.policy"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{ed05cbd2-527c-3a72-9c1b-31341a46c39b}" Id="cfileed05cbd2527c3a729c1b31341a46c39b">
+        <File Id="fileed05cbd2527c3a729c1b31341a46c39b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\siphash.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{b240d0b2-ba61-3621-be71-ab46beb48628}" Id="cfileb240d0b2ba613621be71ab46beb48628">
+        <File Id="fileb240d0b2ba613621be71ab46beb48628" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{86eb86d7-fca5-35e4-b5e4-78d82a5c2c7d}" Id="cfile86eb86d7fca535e4b5e478d82a5c2c7d">
+        <File Id="file86eb86d7fca535e4b5e478d82a5c2c7d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\jvm.cfg"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{208055db-563d-3c18-b3b0-9f490b03c0b1}" Id="cfile208055db563d3c18b3b09f490b03c0b1">
+        <File Id="file208055db563d3c18b3b09f490b03c0b1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\vcruntime140_1.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{dfd58504-10b3-32af-90d5-a75a418141f8}" Id="cfiledfd5850410b332af90d5a75a418141f8">
+        <File Id="filedfd5850410b332af90d5a75a418141f8" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a465918c-f053-3db8-a451-9ac9b7d1c50b}" Id="cfilea465918cf0533db8a4519ac9b7d1c50b">
+        <File Id="filea465918cf0533db8a4519ac9b7d1c50b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-libraryloader-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir8556c2be4e6631319320ba0f4cb85449">
+      <Component Bitness="always64" Guid="{cd58148a-e688-3713-98ed-76652841a5a6}" Id="cfilecd58148ae688371398ed76652841a5a6">
+        <File Id="filecd58148ae688371398ed76652841a5a6" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.logging\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6e25e42e-145c-342c-9c25-37107d03a10f}" Id="cfile6e25e42e145c342c9c2537107d03a10f">
+        <File Id="file6e25e42e145c342c9c2537107d03a10f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\java.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{fe3b7813-6767-3b2f-8cc1-f3cf95240473}" Id="cfilefe3b781367673b2f8cc1f3cf95240473">
+        <File Id="filefe3b781367673b2f8cc1f3cf95240473" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\msvcp140.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{800505d5-4d37-3b9e-b717-040dad918c54}" Id="cfile800505d54d373b9eb717040dad918c54">
+        <File Id="file800505d54d373b9eb717040dad918c54" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\jrt-fs.jar"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{ccd24b5a-f5d6-3918-a17f-dc9a7bbc9394}" Id="cfileccd24b5af5d63918a17fdc9a7bbc9394">
+        <File Id="fileccd24b5af5d63918a17fdc9a7bbc9394" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\syslookup.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a3b21980-a218-327e-9f58-9c5bec86036b}" Id="cfilea3b21980a218327e9f589c5bec86036b">
+        <File Id="filea3b21980a218327e9f589c5bec86036b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-runtime-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{931bce33-e20c-3d7a-ba37-e4e15d92f99a}" Id="cfile931bce33e20c3d7aba37e4e15d92f99a">
+        <File Id="file931bce33e20c3d7aba37e4e15d92f99a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-synch-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{741fe330-cc6a-3e1f-b2e9-b69312f577ac}" Id="cfile741fe330cc6a3e1fb2e9b69312f577ac">
+        <File Id="file741fe330cc6a3e1fb2e9b69312f577ac" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\freetype.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirf1b6edc8eb8f389795b8f26ceb774ffc">
+      <Component Bitness="always64" Guid="{77fe4083-0978-31bd-baa9-2c9978c9279e}" Id="cfile77fe4083097831bdbaa92c9978c9279e">
+        <File Id="file77fe4083097831bdbaa92c9978c9279e" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.management\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{035a07c4-d963-3048-87d5-d42c099eadd7}" Id="cfile035a07c4d963304887d5d42c099eadd7">
+        <File Id="file035a07c4d963304887d5d42c099eadd7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\classlist"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir8576eed6bf2c3a37a55feaf7a5e1364d">
+      <Component Bitness="always64" Guid="{27a94715-f43a-38f0-b597-92a3c935d6ba}" Id="cfile27a94715f43a38f0b59792a3c935d6ba">
+        <File Id="file27a94715f43a38f0b59792a3c935d6ba" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.transaction.xa\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{1d252731-852a-3cd7-9a42-7c6b087220f2}" Id="cfile1d252731852a3cd79a427c6b087220f2">
+        <File Id="file1d252731852a3cd79a427c6b087220f2" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-private-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{7ee9ad88-bf40-3365-8b6c-ced645142a01}" Id="cfile7ee9ad88bf4033658b6cced645142a01">
+        <File Id="file7ee9ad88bf4033658b6cced645142a01" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-stdio-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{2fdb8d1b-7656-3496-9f2e-5e6c21529452}" Id="cfile2fdb8d1b765634969f2e5e6c21529452">
+        <File Id="file2fdb8d1b765634969f2e5e6c21529452" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-math-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir800e59f893cf30bfb9bb9a3f6e92b681">
+      <Component Bitness="always64" Guid="{9cf282d0-fb2e-379a-9128-b3b4c373e428}" Id="cfile9cf282d0fb2e379a9128b3b4c373e428">
+        <File Id="file9cf282d0fb2e379a9128b3b4c373e428" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\policy\unlimited\default_local.policy"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6ba894d4-34c6-390b-bcea-2e4ba94e02ad}" Id="cfile6ba894d434c6390bbcea2e4ba94e02ad">
+        <File Id="file6ba894d434c6390bbcea2e4ba94e02ad" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-processthreads-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{b30094b2-6e50-3dc9-97d6-b641d7a9f486}" Id="cfileb30094b26e503dc997d6b641d7a9f486">
+        <File Id="fileb30094b26e503dc997d6b641d7a9f486" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-file-l1-2-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{dd66bcb1-c572-3659-aa52-5cf915ab9bb6}" Id="cfiledd66bcb1c5723659aa525cf915ab9bb6">
+        <File Id="filedd66bcb1c5723659aa525cf915ab9bb6" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\psfont.properties.ja"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir58ad176b945f3860a8b9d7b1deb963d3">
+      <Component Bitness="always64" Guid="{920e0f8b-040c-3cba-99b4-e05e9c7b3cc0}" Id="cfile920e0f8b040c3cba99b4e05e9c7b3cc0">
+        <File Id="file920e0f8b040c3cba99b4e05e9c7b3cc0" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\policy\README.txt"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{2dd6bbb3-a639-382a-8b5c-3f218f7da385}" Id="cfile2dd6bbb3a639382a8b5c3f218f7da385">
+        <File Id="file2dd6bbb3a639382a8b5c3f218f7da385" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-convert-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir4bc3ae48657c3f7880ba2fc5b2010f8d">
+      <Component Bitness="always64" Guid="{f64e0b1b-267b-3637-9db4-b39a66689709}" Id="cfilef64e0b1b267b36379db4b39a66689709">
+        <File Id="filef64e0b1b267b36379db4b39a66689709" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\jdk.crypto.ec\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir3514978a836f3e138ba92213a166d60b">
+      <Component Bitness="always64" Guid="{f19d9ce7-140c-379d-9bb2-5fc63e6be95f}" Id="cfilef19d9ce7140c379d9bb25fc63e6be95f">
+        <File Id="filef19d9ce7140c379d9bb25fc63e6be95f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.scripting\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{8c446f9e-554b-3b54-ac0f-2dd0599d5c75}" Id="cfile8c446f9e554b3b54ac0f2dd0599d5c75">
+        <File Id="file8c446f9e554b3b54ac0f2dd0599d5c75" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\verify.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{589506d5-3333-3621-8bc4-b6b3fc60be76}" Id="cfile589506d5333336218bc4b6b3fc60be76">
+        <File Id="file589506d5333336218bc4b6b3fc60be76" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\jli.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir8556c2be4e6631319320ba0f4cb85449">
+      <Component Bitness="always64" Guid="{f04ea9b7-0203-3f55-8419-4ff9e867b7ac}" Id="cfilef04ea9b702033f5584194ff9e867b7ac">
+        <File Id="filef04ea9b702033f5584194ff9e867b7ac" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.logging\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir800e59f893cf30bfb9bb9a3f6e92b681">
+      <Component Bitness="always64" Guid="{987393bf-bef1-3fc8-bef2-10a8c99482b1}" Id="cfile987393bfbef13fc8bef210a8c99482b1">
+        <File Id="file987393bfbef13fc8bef210a8c99482b1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\policy\unlimited\default_US_export.policy"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{50d8728d-6a7a-38f2-b057-96ee1c18944c}" Id="cfile50d8728d6a7a38f2b05796ee1c18944c">
+        <File Id="file50d8728d6a7a38f2b05796ee1c18944c" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\schema10part2.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6f5a7dd5-0e57-36d2-b891-fc060f72001b}" Id="cfile6f5a7dd50e5736d2b891fc060f72001b">
+        <File Id="file6f5a7dd50e5736d2b891fc060f72001b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-fibers-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{e7956724-e65a-3018-a487-947ff29096d5}" Id="cfilee7956724e65a3018a487947ff29096d5">
+        <File Id="filee7956724e65a3018a487947ff29096d5" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\awt.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{91d1a6b4-c55c-3932-aed7-e85b138ebb91}" Id="cfile91d1a6b4c55c3932aed7e85b138ebb91">
+        <File Id="file91d1a6b4c55c3932aed7e85b138ebb91" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-console-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{544d7b96-f30b-30c4-a775-694f7abacc10}" Id="cfile544d7b96f30b30c4a775694f7abacc10">
+        <File Id="file544d7b96f30b30c4a775694f7abacc10" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\giflib.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire87a7d2cab5f35e0bf0a9181e38d0c09">
+      <Component Bitness="always64" Guid="{0575f237-82fc-3c80-8835-2bd75869c42c}" Id="cfile0575f23782fc3c8088352bd75869c42c">
+        <File Id="file0575f23782fc3c8088352bd75869c42c" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\release"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{0dbcf5ef-7978-32be-8768-0b581d8e56a2}" Id="cfile0dbcf5ef797832be87680b581d8e56a2">
+        <File Id="file0dbcf5ef797832be87680b581d8e56a2" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir83999e0e61183dc4a1a7d6d25c982bc8">
+      <Component Bitness="always64" Guid="{7320948d-67ae-31f2-b50b-68d50db64963}" Id="cfile7320948d67ae31f2b50b68d50db64963">
+        <File Id="file7320948d67ae31f2b50b68d50db64963" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.sql\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{ef91bb69-1dd7-35ce-ac22-88acae49c363}" Id="cfileef91bb691dd735ceac2288acae49c363">
+        <File Id="fileef91bb691dd735ceac2288acae49c363" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\libpng.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6f7c7d53-43c8-3a2c-a20a-2c7c143169f7}" Id="cfile6f7c7d5343c83a2ca20a2c7c143169f7">
+        <File Id="file6f7c7d5343c83a2ca20a2c7c143169f7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-synch-l1-2-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir3514978a836f3e138ba92213a166d60b">
+      <Component Bitness="always64" Guid="{9ee896be-c7b1-305d-bffa-665f502c6b6f}" Id="cfile9ee896bec7b1305dbffa665f502c6b6f">
+        <File Id="file9ee896bec7b1305dbffa665f502c6b6f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.scripting\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6813f9dd-c50d-3d2a-b4d5-5e4fa476e5b6}" Id="cfile6813f9ddc50d3d2ab4d55e4fa476e5b6">
+        <File Id="file6813f9ddc50d3d2ab4d55e4fa476e5b6" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-string-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{148f3846-c547-3f7e-990b-746f50e1fa4d}" Id="cfile148f3846c5473f7e990b746f50e1fa4d">
+        <File Id="file148f3846c5473f7e990b746f50e1fa4d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xmlxsd.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{43b8a7ed-ec3b-3abd-8b45-cba46a6dd8ce}" Id="cfile43b8a7edec3b3abd8b45cba46a6dd8ce">
+        <File Id="file43b8a7edec3b3abd8b45cba46a6dd8ce" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-memory-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{5f8b27e9-6d1a-394a-93c1-2f03080d9d6c}" Id="cfile5f8b27e96d1a394a93c12f03080d9d6c">
+        <File Id="file5f8b27e96d1a394a93c12f03080d9d6c" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\mlib_image.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir3514978a836f3e138ba92213a166d60b">
+      <Component Bitness="always64" Guid="{d9e9cc38-8bb6-3688-945c-8f917327076b}" Id="cfiled9e9cc388bb63688945c8f917327076b">
+        <File Id="filed9e9cc388bb63688945c8f917327076b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.scripting\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{6beef31d-d71d-30f0-b4fb-1c742f738975}" Id="cfile6beef31dd71d30f0b4fb1c742f738975">
+        <File Id="file6beef31dd71d30f0b4fb1c742f738975" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\public_suffix.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{72c28c1b-c900-3981-9fd4-dd73ae670aca}" Id="cfile72c28c1bc90039819fd4dd73ae670aca">
+        <File Id="file72c28c1bc90039819fd4dd73ae670aca" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{5bf74ba0-6044-3ead-af88-032f03ff5280}" Id="cfile5bf74ba060443eadaf88032f03ff5280">
+        <File Id="file5bf74ba060443eadaf88032f03ff5280" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\tzmappings"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir94085e31dd8f390caf4ea84a1d57e751">
+      <Component Bitness="always64" Guid="{7d9a506d-4637-3ebc-9edb-5a25dfcefc33}" Id="cfile7d9a506d46373ebc9edb5a25dfcefc33">
+        <File Id="file7d9a506d46373ebc9edb5a25dfcefc33" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\java.security"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{d34513ba-f131-38c0-980a-0e1e95698670}" Id="cfiled34513baf13138c0980a0e1e95698670">
+        <File Id="filed34513baf13138c0980a0e1e95698670" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xmlspec.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{968edb2f-3e28-3400-922e-2a9c7d3860cc}" Id="cfile968edb2f3e283400922e2a9c7d3860cc">
+        <File Id="file968edb2f3e283400922e2a9c7d3860cc" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\fontconfig.bfc"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{bd507777-9b6a-3ed2-aa5e-f8b1a859ac9a}" Id="cfilebd5077779b6a3ed2aa5ef8b1a859ac9a">
+        <File Id="filebd5077779b6a3ed2aa5ef8b1a859ac9a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\javajpeg.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir1b74edbf234730278bbbbb2f2f883473">
+      <Component Bitness="always64" Guid="{4903e11c-9d80-3525-b88b-35ff06f85bc5}" Id="cfile4903e11c9d803525b88b35ff06f85bc5">
+        <File Id="file4903e11c9d803525b88b35ff06f85bc5" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.prefs\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{fa556ed1-f395-3f4d-96b5-186a472f1eda}" Id="cfilefa556ed1f3953f4d96b5186a472f1eda">
+        <File Id="filefa556ed1f3953f4d96b5186a472f1eda" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-interlocked-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir83999e0e61183dc4a1a7d6d25c982bc8">
+      <Component Bitness="always64" Guid="{df5ca642-dd9a-3a0a-a356-1eba8f8df28f}" Id="cfiledf5ca642dd9a3a0aa3561eba8f8df28f">
+        <File Id="filedf5ca642dd9a3a0aa3561eba8f8df28f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.sql\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir4bc3ae48657c3f7880ba2fc5b2010f8d">
+      <Component Bitness="always64" Guid="{c6cc04cc-8a97-3247-a7b7-b2ebdee3fcca}" Id="cfilec6cc04cc8a973247a7b7b2ebdee3fcca">
+        <File Id="filec6cc04cc8a973247a7b7b2ebdee3fcca" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\jdk.crypto.ec\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir8556c2be4e6631319320ba0f4cb85449">
+      <Component Bitness="always64" Guid="{e59a3803-a0dd-34b5-a320-916fef733f8a}" Id="cfilee59a3803a0dd34b5a320916fef733f8a">
+        <File Id="filee59a3803a0dd34b5a320916fef733f8a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.logging\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{f4417da5-5e36-33ff-bd6c-7c2ea7b520f1}" Id="cfilef4417da55e3633ffbd6c7c2ea7b520f1">
+        <File Id="filef4417da55e3633ffbd6c7c2ea7b520f1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-heap-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{7928fa2d-45ce-3375-bbe9-b62e245ff9d7}" Id="cfile7928fa2d45ce3375bbe9b62e245ff9d7">
+        <File Id="file7928fa2d45ce3375bbe9b62e245ff9d7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-profile-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{36f487fe-d9dd-38c4-8340-ad1d3770000f}" Id="cfile36f487fed9dd38c48340ad1d3770000f">
+        <File Id="file36f487fed9dd38c48340ad1d3770000f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\lcms.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{92005861-b6c6-3e31-8442-f946199376f9}" Id="cfile92005861b6c63e318442f946199376f9">
+        <File Id="file92005861b6c63e318442f946199376f9" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-datetime-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir231e6a506fe7391ea7fa4f2559307f5e">
+      <Component Bitness="always64" Guid="{2789075c-1e3c-3d62-bf61-c3f391e81eaa}" Id="cfile2789075c1e3c3d62bf61c3f391e81eaa">
+        <File Id="file2789075c1e3c3d62bf61c3f391e81eaa" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\jaxp-strict.properties.template"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{e9dca98c-5bc4-3b40-ab8f-1f5d80729dbf}" Id="cfilee9dca98c5bc43b40ab8f1f5d80729dbf">
+        <File Id="filee9dca98c5bc43b40ab8f1f5d80729dbf" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\net.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir2d369fcb4d45321a9d1fda8457a26189">
+      <Component Bitness="always64" Guid="{4183df5c-743e-3349-a059-4b4298331a0b}" Id="cfile4183df5c743e3349a0594b4298331a0b">
+        <File Id="file4183df5c743e3349a0594b4298331a0b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.naming\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{8712bca0-fae4-3754-8b30-e705a0a78ee0}" Id="cfile8712bca0fae437548b30e705a0a78ee0">
+        <File Id="file8712bca0fae437548b30e705a0a78ee0" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-fibers-l1-1-1.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{ec7edd46-a49d-33b8-afb4-a7ffdb801df7}" Id="cfileec7edd46a49d33b8afb4a7ffdb801df7">
+        <File Id="fileec7edd46a49d33b8afb4a7ffdb801df7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xhtml11schema.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir2d369fcb4d45321a9d1fda8457a26189">
+      <Component Bitness="always64" Guid="{e8b0a277-c044-3d42-bd30-f6ef17b8461e}" Id="cfilee8b0a277c0443d42bd30f6ef17b8461e">
+        <File Id="filee8b0a277c0443d42bd30f6ef17b8461e" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.naming\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{f642e100-daf9-3a71-bdbf-649246efb735}" Id="cfilef642e100daf93a71bdbf649246efb735">
+        <File Id="filef642e100daf93a71bdbf649246efb735" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\cldr.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a89abedb-ae77-3505-82ca-b6b930bcd024}" Id="cfilea89abedbae77350582cab6b930bcd024">
+        <File Id="filea89abedbae77350582cab6b930bcd024" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-processthreads-l1-1-1.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dird4162455a905351ba4c81d5bef13ee9b">
+      <Component Bitness="always64" Guid="{b9bf07d6-7b33-3601-9acb-238ef9c1fadd}" Id="cfileb9bf07d67b3336019acb238ef9c1fadd">
+        <File Id="fileb9bf07d67b3336019acb238ef9c1fadd" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.security.sasl\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{4eea4891-3629-3baa-915c-65ad256e04dd}" Id="cfile4eea489136293baa915c65ad256e04dd">
+        <File Id="file4eea489136293baa915c65ad256e04dd" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\tzdb.dat"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir231e6a506fe7391ea7fa4f2559307f5e">
+      <Component Bitness="always64" Guid="{85a4e33d-6d57-3f4f-9ec2-56382ca6df24}" Id="cfile85a4e33d6d573f4f9ec256382ca6df24">
+        <File Id="file85a4e33d6d573f4f9ec256382ca6df24" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\logging.properties"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{82207aab-4be5-34b1-926b-e8df36bcbc44}" Id="cfile82207aab4be534b1926be8df36bcbc44">
+        <File Id="file82207aab4be534b1926be8df36bcbc44" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-util-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir1e08c79b7c55361b81b1a887233c601b">
+      <Component Bitness="always64" Guid="{1fdeac34-4495-3088-bb81-4123683b4e1a}" Id="cfile1fdeac3444953088bb814123683b4e1a">
+        <File Id="file1fdeac3444953088bb814123683b4e1a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.datatransfer\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{db4ea206-621e-394a-ac47-56e9617ce79d}" Id="cfiledb4ea206621e394aac4756e9617ce79d">
+        <File Id="filedb4ea206621e394aac4756e9617ce79d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-errorhandling-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a5c4078e-9a94-3a1b-b636-e0f699735369}" Id="cfilea5c4078e9a943a1bb636e0f699735369">
+        <File Id="filea5c4078e9a943a1bb636e0f699735369" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-timezone-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir231e6a506fe7391ea7fa4f2559307f5e">
+      <Component Bitness="always64" Guid="{f590100e-993f-3f71-8b32-6dedf646ce4c}" Id="cfilef590100e993f3f718b326dedf646ce4c">
+        <File Id="filef590100e993f3f718b326dedf646ce4c" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\net.properties"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir162e27f67daa35a5967791019ecd6775">
+      <Component Bitness="always64" Guid="{54140377-5673-3977-bf97-7b917e94b165}" Id="cfile5414037756733977bf977b917e94b165">
+        <File Id="file5414037756733977bf977b917e94b165" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\policy\limited\default_US_export.policy"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir40f84b56068d341da01a768174eb5e59">
+      <Component Bitness="always64" Guid="{f098c457-6401-31c2-882b-271729db27eb}" Id="cfilef098c457640131c2882b271729db27eb">
+        <File Id="filef098c457640131c2882b271729db27eb" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\app\DailyDash.cfg"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{2ab4aac3-2d93-39d7-9cfc-ce3202c97b74}" Id="cfile2ab4aac32d9339d79cfcce3202c97b74">
+        <File Id="file2ab4aac32d9339d79cfcce3202c97b74" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xhtml11.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{eb95acfb-d3d7-31b7-b31d-7042b289b3fe}" Id="cfileeb95acfbd3d731b7b31d7042b289b3fe">
+        <File Id="fileeb95acfbd3d731b7b31d7042b289b3fe" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-conio-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{5f1ea49d-3873-3b08-8948-5ce8770d7a1f}" Id="cfile5f1ea49d38733b0889485ce8770d7a1f">
+        <File Id="file5f1ea49d38733b0889485ce8770d7a1f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xhtml10schema.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir1b74edbf234730278bbbbb2f2f883473">
+      <Component Bitness="always64" Guid="{5f5b6ccf-a7a7-3378-9679-92c108a36cd8}" Id="cfile5f5b6ccfa7a73378967992c108a36cd8">
+        <File Id="file5f5b6ccfa7a73378967992c108a36cd8" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.prefs\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir162e27f67daa35a5967791019ecd6775">
+      <Component Bitness="always64" Guid="{6449fbc1-5eb7-360a-85b3-6231790d7742}" Id="cfile6449fbc15eb7360a85b36231790d7742">
+        <File Id="file6449fbc15eb7360a85b36231790d7742" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\security\policy\limited\exempt_local.policy"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{977a960d-186f-37a4-aa8f-9786b457745a}" Id="cfile977a960d186f37a4aa8f9786b457745a">
+        <File Id="file977a960d186f37a4aa8f9786b457745a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\harfbuzz.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{babbebcd-7c99-3cc9-99d4-231d3bb26e83}" Id="cfilebabbebcd7c993cc999d4231d3bb26e83">
+        <File Id="filebabbebcd7c993cc999d4231d3bb26e83" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-debug-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a7dd5107-132a-3009-9524-0f15d5ad8285}" Id="cfilea7dd5107132a300995240f15d5ad8285">
+        <File Id="filea7dd5107132a300995240f15d5ad8285" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\prefs.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{5ad2c841-972a-3789-a81a-830ff17e5967}" Id="cfile5ad2c841972a3789a81a830ff17e5967">
+        <File Id="file5ad2c841972a3789a81a830ff17e5967" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-filesystem-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{ef18fbff-6c23-3858-beb1-9712296531e3}" Id="cfileef18fbff6c233858beb19712296531e3">
+        <File Id="fileef18fbff6c233858beb19712296531e3" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\jcup.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir231e6a506fe7391ea7fa4f2559307f5e">
+      <Component Bitness="always64" Guid="{7927518a-bdc0-36ed-8538-c48f2108947f}" Id="cfile7927518abdc036ed8538c48f2108947f">
+        <File Id="file7927518abdc036ed8538c48f2108947f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\sound.properties"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{d78727bf-16eb-3b60-a533-7074e6c1866e}" Id="cfiled78727bf16eb3b60a5337074e6c1866e">
+        <File Id="filed78727bf16eb3b60a5337074e6c1866e" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-process-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir397c92055a9137aeb8b4873a2901dc79">
+      <Component Bitness="always64" Guid="{10b7566b-0874-3cd3-96d3-93b587f71605}" Id="cfile10b7566b08743cd396d393b587f71605">
+        <File Id="file10b7566b08743cd396d393b587f71605" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\jdk.unsupported\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{bbef2860-1bf4-3a0f-ab7a-0a27252e0a08}" Id="cfilebbef28601bf43a0fab7a0a27252e0a08">
+        <File Id="filebbef28601bf43a0fab7a0a27252e0a08" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-console-l1-2-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{e3e0fa64-2a7f-318d-b4e6-75275da8a5c3}" Id="cfilee3e0fa642a7f318db4e675275da8a5c3">
+        <File Id="filee3e0fa642a7f318db4e675275da8a5c3" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\freetype.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dird4162455a905351ba4c81d5bef13ee9b">
+      <Component Bitness="always64" Guid="{4e53dd9c-2b5d-35b4-ae37-729eb85b2f17}" Id="cfile4e53dd9c2b5d35b4ae37729eb85b2f17">
+        <File Id="file4e53dd9c2b5d35b4ae37729eb85b2f17" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.security.sasl\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir2603662ba796333eb8233539121dfaa7">
+      <Component Bitness="always64" Guid="{6cdffda1-809c-37c0-84ea-8864cfda5ad3}" Id="cfile6cdffda1809c37c084ea8864cfda5ad3">
+        <File Id="file6cdffda1809c37c084ea8864cfda5ad3" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\security\public_suffix_list.dat"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{7901f84a-dcf3-3cb6-b42f-68077f876feb}" Id="cfile7901f84adcf33cb6b42f68077f876feb">
+        <File Id="file7901f84adcf33cb6b42f68077f876feb" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\ucrtbase.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{2a6a8a52-ed07-36d4-89bf-c71b16feb2c3}" Id="cfile2a6a8a52ed0736d489bfc71b16feb2c3">
+        <File Id="file2a6a8a52ed0736d489bfc71b16feb2c3" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xerces.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{9c961237-cb7b-31fe-b185-d0a70c7f6e5f}" Id="cfile9c961237cb7b31feb185d0a70c7f6e5f">
+        <File Id="file9c961237cb7b31feb185d0a70c7f6e5f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\c-libutl.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{0f4f141a-ad34-3d12-bd4b-6a5d54ba8daa}" Id="cfile0f4f141aad343d12bd4b6a5d54ba8daa">
+        <File Id="file0f4f141aad343d12bd4b6a5d54ba8daa" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-kernel32-legacy-l1-1-1.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{08341b86-460b-3c82-bb25-dc5f0ef3f451}" Id="cfile08341b86460b3c82bb25dc5f0ef3f451">
+        <File Id="file08341b86460b3c82bb25dc5f0ef3f451" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\management.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{62d7b0fa-975c-373a-a3fe-3d51723d0c98}" Id="cfile62d7b0fa975c373aa3fe3d51723d0c98">
+        <File Id="file62d7b0fa975c373aa3fe3d51723d0c98" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-file-l2-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{73732fc1-b32e-3578-8023-9e94b3c7485c}" Id="cfile73732fc1b32e357880239e94b3c7485c">
+        <File Id="file73732fc1b32e357880239e94b3c7485c" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\zlib.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{acb0029a-e09b-3b3b-8501-8ae2e3cf95d7}" Id="cfileacb0029ae09b3b3b85018ae2e3cf95d7">
+        <File Id="fileacb0029ae09b3b3b85018ae2e3cf95d7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-string-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{ccc5c484-362f-3fc8-9af4-fe8a46303381}" Id="cfileccc5c484362f3fc89af4fe8a46303381">
+        <File Id="fileccc5c484362f3fc89af4fe8a46303381" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\jawt.lib"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir397c92055a9137aeb8b4873a2901dc79">
+      <Component Bitness="always64" Guid="{e45c4147-a131-3ecd-89e3-eedb2ea0fd75}" Id="cfilee45c4147a1313ecd89e3eedb2ea0fd75">
+        <File Id="filee45c4147a1313ecd89e3eedb2ea0fd75" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\jdk.unsupported\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirf1b6edc8eb8f389795b8f26ceb774ffc">
+      <Component Bitness="always64" Guid="{463e16e3-9904-3ee3-840d-4ff6a5b518e4}" Id="cfile463e16e399043ee3840d4ff6a5b518e4">
+        <File Id="file463e16e399043ee3840d4ff6a5b518e4" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.management\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{de8b32f8-0a21-3cdb-965e-d9e673af7b9e}" Id="cfilede8b32f80a213cdb965ed9e673af7b9e">
+        <File Id="filede8b32f80a213cdb965ed9e673af7b9e" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\lcms.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{a209e427-91ff-3112-b7fa-706e072314f2}" Id="cfilea209e42791ff3112b7fa706e072314f2">
+        <File Id="filea209e42791ff3112b7fa706e072314f2" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\dom.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirf1b6edc8eb8f389795b8f26ceb774ffc">
+      <Component Bitness="always64" Guid="{fa7576c3-dcd5-3067-873c-b220507e610a}" Id="cfilefa7576c3dcd53067873cb220507e610a">
+        <File Id="filefa7576c3dcd53067873cb220507e610a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.management\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{8e1c5720-76c2-3e64-babd-0c9ef5e69ce8}" Id="cfile8e1c572076c23e64babd0c9ef5e69ce8">
+        <File Id="file8e1c572076c23e64babd0c9ef5e69ce8" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\nio.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{a9afc045-0c3f-3778-ad89-3db2f8ec482f}" Id="cfilea9afc0450c3f3778ad893db2f8ec482f">
+        <File Id="filea9afc0450c3f3778ad893db2f8ec482f" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\aes.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{7a5c125d-70d1-3e0e-826f-dd99a4d484b2}" Id="cfile7a5c125d70d13e0e826fdd99a4d484b2">
+        <File Id="file7a5c125d70d13e0e826fdd99a4d484b2" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-environment-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir2d369fcb4d45321a9d1fda8457a26189">
+      <Component Bitness="always64" Guid="{ea70abde-c1f7-399e-833b-8d06cd802086}" Id="cfileea70abdec1f7399e833b8d06cd802086">
+        <File Id="fileea70abdec1f7399e833b8d06cd802086" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.naming\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Bitness="always64" Guid="{8cd7d8dd-106c-331d-9a69-d415953423fd}" Id="cfile8cd7d8dd106c331d9a69d415953423fd">
+        <File Id="file8cd7d8dd106c331d9a69d415953423fd" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\DailyDash.exe"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{69721213-e9e5-3d81-aa40-7c9ae4fca894}" Id="cfile69721213e9e53d81aa407c9ae4fca894">
+        <File Id="file69721213e9e53d81aa407c9ae4fca894" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\jpeg.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir1b74edbf234730278bbbbb2f2f883473">
+      <Component Bitness="always64" Guid="{2b71777a-7ad6-38a8-a4b2-976bfb2541d7}" Id="cfile2b71777a7ad638a8a4b2976bfb2541d7">
+        <File Id="file2b71777a7ad638a8a4b2976bfb2541d7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.prefs\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{8613b7b3-9609-354c-bbe8-94624e87210d}" Id="cfile8613b7b39609354cbbe894624e87210d">
+        <File Id="file8613b7b39609354cbbe894624e87210d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\bcel.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{2bee21ad-8f5b-32c8-9933-3416c52a7222}" Id="cfile2bee21ad8f5b32c899333416c52a7222">
+        <File Id="file2bee21ad8f5b32c899333416c52a7222" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-multibyte-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{4b4ca806-65dc-395f-9e22-18a903abf4d1}" Id="cfile4b4ca80665dc395f9e2218a903abf4d1">
+        <File Id="file4b4ca80665dc395f9e2218a903abf4d1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xalan.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir231e6a506fe7391ea7fa4f2559307f5e">
+      <Component Bitness="always64" Guid="{c3805c86-9162-372a-9047-7e2b352f8e6d}" Id="cfilec3805c869162372a90477e2b352f8e6d">
+        <File Id="filec3805c869162372a90477e2b352f8e6d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\conf\jaxp.properties"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{890ff3bc-67c1-35b3-9a53-8483cd362e4a}" Id="cfile890ff3bc67c135b39a538483cd362e4a">
+        <File Id="file890ff3bc67c135b39a538483cd362e4a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\psfontj2d.properties"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{5e1f8c8e-9edc-3d7c-961c-1020ee416957}" Id="cfile5e1f8c8e9edc3d7c961c1020ee416957">
+        <File Id="file5e1f8c8e9edc3d7c961c1020ee416957" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-utility-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{47d57676-c1db-3647-88fe-baaf4ed18569}" Id="cfile47d57676c1db364788febaaf4ed18569">
+        <File Id="file47d57676c1db364788febaaf4ed18569" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\fontconfig.properties.src"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{a43f830c-2099-33f6-b04e-b3c2284e0eff}" Id="cfilea43f830c209933f6b04eb3c2284e0eff">
+        <File Id="filea43f830c209933f6b04eb3c2284e0eff" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\colorimaging.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir4bc3ae48657c3f7880ba2fc5b2010f8d">
+      <Component Bitness="always64" Guid="{4a8f0c41-4570-3bfc-8b86-95b145c28370}" Id="cfile4a8f0c4145703bfc8b8695b145c28370">
+        <File Id="file4a8f0c4145703bfc8b8695b145c28370" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\jdk.crypto.ec\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{b1766a3d-11ae-3036-b055-a4a850f5da4d}" Id="cfileb1766a3d11ae3036b055a4a850f5da4d">
+        <File Id="fileb1766a3d11ae3036b055a4a850f5da4d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{3e9b44e6-8194-3344-b82b-209ee8ad73f7}" Id="cfile3e9b44e681943344b82b209ee8ad73f7">
+        <File Id="file3e9b44e681943344b82b209ee8ad73f7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6d9ce4cb-6bdf-3f6f-9b24-ebfc65bac782}" Id="cfile6d9ce4cb6bdf3f6f9b24ebfc65bac782">
+        <File Id="file6d9ce4cb6bdf3f6f9b24ebfc65bac782" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\zip.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{c060d506-679a-3903-b1ff-75ca06aee1a8}" Id="cfilec060d506679a3903b1ff75ca06aee1a8">
+        <File Id="filec060d506679a3903b1ff75ca06aee1a8" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-heap-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{b54f801d-4ef8-31ae-a870-dee318d3e651}" Id="cfileb54f801d4ef831aea870dee318d3e651">
+        <File Id="fileb54f801d4ef831aea870dee318d3e651" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-rtlsupport-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{b7f25dfe-f9c0-389f-b25d-5bf599deae2a}" Id="cfileb7f25dfef9c0389fb25d5bf599deae2a">
+        <File Id="fileb7f25dfef9c0389fb25d5bf599deae2a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\jimage.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{57f1e4a0-1ad8-3188-ad0c-39fda43752ed}" Id="cfile57f1e4a01ad83188ad0c39fda43752ed">
+        <File Id="file57f1e4a01ad83188ad0c39fda43752ed" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\jawt.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirbb362e5246873511867209e9c853d033">
+      <Component Bitness="always64" Guid="{0566e653-e9ae-32ad-8448-1ac3f202a898}" Id="cfile0566e653e9ae32ad84481ac3f202a898">
+        <File Id="file0566e653e9ae32ad84481ac3f202a898" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\server\jvm.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir1e08c79b7c55361b81b1a887233c601b">
+      <Component Bitness="always64" Guid="{5e290de5-135b-3b84-99cc-829dc8143504}" Id="cfile5e290de5135b3b8499cc829dc8143504">
+        <File Id="file5e290de5135b3b8499cc829dc8143504" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.datatransfer\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir40f84b56068d341da01a768174eb5e59">
+      <Component Bitness="always64" Guid="{c3208073-1f2a-33c9-a430-11e3868eb9e7}" Id="cfilec32080731f2a33c9a43011e3868eb9e7">
+        <File Id="filec32080731f2a33c9a43011e3868eb9e7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\app\dailydash.jar"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{eb140c6c-c49c-30cf-b587-d0c49e93f655}" Id="cfileeb140c6cc49c30cfb587d0c49e93f655">
+        <File Id="fileeb140c6cc49c30cfb587d0c49e93f655" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\fontmanager.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{fd7f5f40-86ef-3512-9470-b8fe26a820ef}" Id="cfilefd7f5f4086ef35129470b8fe26a820ef">
+        <File Id="filefd7f5f4086ef35129470b8fe26a820ef" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-processenvironment-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir2603662ba796333eb8233539121dfaa7">
+      <Component Bitness="always64" Guid="{13acf131-414a-356d-b490-0fd4f431a6f4}" Id="cfile13acf131414a356db4900fd4f431a6f4">
+        <File Id="file13acf131414a356db4900fd4f431a6f4" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\security\cacerts"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir8576eed6bf2c3a37a55feaf7a5e1364d">
+      <Component Bitness="always64" Guid="{27fdca3a-c78b-3857-b784-40fb823583c1}" Id="cfile27fdca3ac78b3857b78440fb823583c1">
+        <File Id="file27fdca3ac78b3857b78440fb823583c1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.transaction.xa\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{aaaab2cd-f48e-3ce3-bf76-e368ffff8818}" Id="cfileaaaab2cdf48e3ce3bf76e368ffff8818">
+        <File Id="fileaaaab2cdf48e3ce3bf76e368ffff8818" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\schema10part1.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{66d1d259-d6b9-3660-87fc-5022a6543c88}" Id="cfile66d1d259d6b9366087fc5022a6543c88">
+        <File Id="file66d1d259d6b9366087fc5022a6543c88" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-localization-l1-2-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{4b0fb6b4-ed89-3625-99d0-28b2e6110ad7}" Id="cfile4b0fb6b4ed89362599d028b2e6110ad7">
+        <File Id="file4b0fb6b4ed89362599d028b2e6110ad7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-handle-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a00d1c8e-9cf4-3226-950a-03042d6ad409}" Id="cfilea00d1c8e9cf43226950a03042d6ad409">
+        <File Id="filea00d1c8e9cf43226950a03042d6ad409" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\jsound.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{4e6810dc-2d44-33ec-b44e-2e5a2fae04fd}" Id="cfile4e6810dc2d4433ecb44e2e5a2fae04fd">
+        <File Id="file4e6810dc2d4433ecb44e2e5a2fae04fd" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{8a5efcbf-f12d-3f48-8c6f-c2e04d8c25b8}" Id="cfile8a5efcbff12d3f488c6fc2e04d8c25b8">
+        <File Id="file8a5efcbff12d3f488c6fc2e04d8c25b8" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-sysinfo-l1-2-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{045d8ee6-53bb-3006-9cef-df65e63aadfc}" Id="cfile045d8ee653bb30069cefdf65e63aadfc">
+        <File Id="file045d8ee653bb30069cefdf65e63aadfc" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\mesa3d.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Component Bitness="always64" Guid="{7ba917fe-fca0-3dea-960a-aa56152e406b}" Id="cfile7ba917fefca03dea960aaa56152e406b">
+        <File Id="file7ba917fefca03dea960aaa56152e406b" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\modules"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir50fed7ddbb9d3171bb64b4d58957ad5c">
+      <Component Bitness="always64" Guid="{42cd07cf-a71e-37f6-a58a-0794bb262503}" Id="cfile42cd07cfa71e37f6a58a0794bb262503">
+        <File Id="file42cd07cfa71e37f6a58a0794bb262503" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.base\unicode.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf640b19630f362c9ff2093915614c74">
+      <Component Bitness="always64" Guid="{14368850-e73f-3c8f-beb2-d132b44a4808}" Id="cfile14368850e73f3c8fbeb2d132b44a4808">
+        <File Id="file14368850e73f3c8fbeb2d132b44a4808" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.desktop\ADDITIONAL_LICENSE_INFO"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir2603662ba796333eb8233539121dfaa7">
+      <Component Bitness="always64" Guid="{ab799eb7-f72c-3e8e-9e30-1dfdc98be0c7}" Id="cfileab799eb7f72c3e8e9e301dfdc98be0c7">
+        <File Id="fileab799eb7f72c3e8e9e301dfdc98be0c7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\lib\security\blocked.certs"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir397c92055a9137aeb8b4873a2901dc79">
+      <Component Bitness="always64" Guid="{5af03526-a0a6-39e3-af85-beb12e34d9a9}" Id="cfile5af03526a0a639e3af85beb12e34d9a9">
+        <File Id="file5af03526a0a639e3af85beb12e34d9a9" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\jdk.unsupported\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir83999e0e61183dc4a1a7d6d25c982bc8">
+      <Component Bitness="always64" Guid="{e5dbe130-c275-37c2-8098-d77be7973906}" Id="cfilee5dbe130c27537c28098d77be7973906">
+        <File Id="filee5dbe130c27537c28098d77be7973906" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.sql\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{6fc62b25-eb33-3d54-8610-5ebd7f83f10d}" Id="cfile6fc62b25eb333d5486105ebd7f83f10d">
+        <File Id="file6fc62b25eb333d5486105ebd7f83f10d" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-locale-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{14e7cf18-67b8-344f-93e8-a2a98a764cd7}" Id="cfile14e7cf1867b8344f93e8a2a98a764cd7">
+        <File Id="file14e7cf1867b8344f93e8a2a98a764cd7" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\vcruntime140.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{a4dfe168-ad52-39e6-965c-aa1f825a4e1e}" Id="cfilea4dfe168ad5239e6965caa1f825a4e1e">
+        <File Id="filea4dfe168ad5239e6965caa1f825a4e1e" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-core-sysinfo-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir8576eed6bf2c3a37a55feaf7a5e1364d">
+      <Component Bitness="always64" Guid="{e0d00eee-1390-351d-9677-3c0985e20cda}" Id="cfilee0d00eee1390351d96773c0985e20cda">
+        <File Id="filee0d00eee1390351d96773c0985e20cda" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.transaction.xa\LICENSE"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dire97c5b787ae13ca1a5f1d02aee383b04">
+      <Component Bitness="always64" Guid="{fdf417d8-9105-3282-a000-9f64996c9ecb}" Id="cfilefdf417d891053282a0009f64996c9ecb">
+        <File Id="filefdf417d891053282a0009f64996c9ecb" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.xml\xhtml10.md"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Component Bitness="always64" Guid="{358f4cfe-5b56-3484-aeb2-8b7aecbd91c6}" Id="cfile358f4cfe5b563484aeb28b7aecbd91c6">
+        <File Id="file358f4cfe5b563484aeb28b7aecbd91c6" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\bin\api-ms-win-crt-time-l1-1-0.dll"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir1e08c79b7c55361b81b1a887233c601b">
+      <Component Bitness="always64" Guid="{1222d9ee-9612-3796-b426-8002d435135a}" Id="cfile1222d9ee96123796b4268002d435135a">
+        <File Id="file1222d9ee96123796b4268002d435135a" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\image\DailyDash\runtime\legal\java.datatransfer\ASSEMBLY_EXCEPTION"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir40f84b56068d341da01a768174eb5e59">
+      <Component Bitness="always64" Guid="{d4b06b31-fb62-3c59-8059-562884b108f1}" Id="cfiled4b06b31fb623c598059562884b108f1">
+        <File Id="filed4b06b31fb623c598059562884b108f1" KeyPath="yes" Source="C:\Users\joaoc\programming\personal\DailyDash\target\jpackage-temp\config\.package"></File>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dirf1b6edc8eb8f389795b8f26ceb774ffc" Name="java.management"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dird4162455a905351ba4c81d5bef13ee9b" Name="java.security.sasl"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir94085e31dd8f390caf4ea84a1d57e751">
+      <Directory Id="dir58ad176b945f3860a8b9d7b1deb963d3" Name="policy"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dire87a7d2cab5f35e0bf0a9181e38d0c09">
+      <Directory Id="dir231e6a506fe7391ea7fa4f2559307f5e" Name="conf"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir50fed7ddbb9d3171bb64b4d58957ad5c" Name="java.base"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dircf9a22dc840b3cff9bb0e789148cd11f">
+      <Directory Id="dir2603662ba796333eb8233539121dfaa7" Name="security"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir83999e0e61183dc4a1a7d6d25c982bc8" Name="java.sql"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir1b74edbf234730278bbbbb2f2f883473" Name="java.prefs"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir231e6a506fe7391ea7fa4f2559307f5e">
+      <Directory Id="dir94085e31dd8f390caf4ea84a1d57e751" Name="security"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dircf640b19630f362c9ff2093915614c74" Name="java.desktop"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dire97c5b787ae13ca1a5f1d02aee383b04" Name="java.xml"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir1e08c79b7c55361b81b1a887233c601b" Name="java.datatransfer"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dirb314e9c4f1703a21bfb0e30d794de601">
+      <Directory Id="dirbb362e5246873511867209e9c853d033" Name="server"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dire87a7d2cab5f35e0bf0a9181e38d0c09">
+      <Directory Id="dirb314e9c4f1703a21bfb0e30d794de601" Name="bin"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir58ad176b945f3860a8b9d7b1deb963d3">
+      <Directory Id="dir800e59f893cf30bfb9bb9a3f6e92b681" Name="unlimited"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dire87a7d2cab5f35e0bf0a9181e38d0c09">
+      <Directory Id="dircf9a22dc840b3cff9bb0e789148cd11f" Name="lib"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir2d369fcb4d45321a9d1fda8457a26189" Name="java.naming"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir397c92055a9137aeb8b4873a2901dc79" Name="jdk.unsupported"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir8556c2be4e6631319320ba0f4cb85449" Name="java.logging"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="INSTALLDIR">
+      <Directory Id="dir40f84b56068d341da01a768174eb5e59" Name="app"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="INSTALLDIR">
+      <Directory Id="dire87a7d2cab5f35e0bf0a9181e38d0c09" Name="runtime"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dire87a7d2cab5f35e0bf0a9181e38d0c09">
+      <Directory Id="dir5391ccbfa2c03538b949e3f55c8f5005" Name="legal"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir8576eed6bf2c3a37a55feaf7a5e1364d" Name="java.transaction.xa"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir3514978a836f3e138ba92213a166d60b" Name="java.scripting"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir5391ccbfa2c03538b949e3f55c8f5005">
+      <Directory Id="dir4bc3ae48657c3f7880ba2fc5b2010f8d" Name="jdk.crypto.ec"></Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="dir58ad176b945f3860a8b9d7b1deb963d3">
+      <Directory Id="dir162e27f67daa35a5967791019ecd6775" Name="limited"></Directory>
+    </DirectoryRef>
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLDIR" Name="DailyDash"></Directory>
+    </StandardDirectory>
+    <Property Id="RM_RF48431AECBD69377EA800D62616352F20">
+      <RegistrySearch Id="regsearch44413c41962833c69ffb8268f3119343" Root="HKLM" Key="Software\Unknown\DailyDash\1.0.0" Type="raw" Name="RM_RF48431AECBD69377EA800D62616352F20"></RegistrySearch>
+    </Property>
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Bitness="always64" Id="crm_rf48431aecbd69377ea800d62616352f20">
+        <RegistryKey Root="HKLM" Key="Software\Unknown\DailyDash\1.0.0">
+          <RegistryValue Type="string" KeyPath="yes" Name="RM_RF48431AECBD69377EA800D62616352F20" Value="[INSTALLDIR]"></RegistryValue>
+        </RegistryKey>
+        <util:RemoveFolderEx On="uninstall" Property="RM_RF48431AECBD69377EA800D62616352F20"></util:RemoveFolderEx>
+      </Component>
+    </DirectoryRef>
+    <ComponentGroup Id="Files">
+      <ComponentRef Id="cfile2ff3e3ebe7d43ca99ae3624aba9bece1"></ComponentRef>
+      <ComponentRef Id="cfilee7fe97df1fef334caa822bd7732c5812"></ComponentRef>
+      <ComponentRef Id="cfile04a8f862de0d3915a1afb25a95ff4bb1"></ComponentRef>
+      <ComponentRef Id="cfileea93ac6aa1763cd0847af7fef0d1dceb"></ComponentRef>
+      <ComponentRef Id="cfile96ab140b66c237588f0e762bd982bec5"></ComponentRef>
+      <ComponentRef Id="cfile69b7c6bd78ba366e81adfa136c715587"></ComponentRef>
+      <ComponentRef Id="cfile3d6be93c710734899582a0c89efbd4d5"></ComponentRef>
+      <ComponentRef Id="cfile20610d62842a3983af561cd4ad1966dd"></ComponentRef>
+      <ComponentRef Id="cfile4e975aba8f563264877f7aa3ac710384"></ComponentRef>
+      <ComponentRef Id="cfileed05cbd2527c3a729c1b31341a46c39b"></ComponentRef>
+      <ComponentRef Id="cfileb240d0b2ba613621be71ab46beb48628"></ComponentRef>
+      <ComponentRef Id="cfile86eb86d7fca535e4b5e478d82a5c2c7d"></ComponentRef>
+      <ComponentRef Id="cfile208055db563d3c18b3b09f490b03c0b1"></ComponentRef>
+      <ComponentRef Id="cfiledfd5850410b332af90d5a75a418141f8"></ComponentRef>
+      <ComponentRef Id="cfilea465918cf0533db8a4519ac9b7d1c50b"></ComponentRef>
+      <ComponentRef Id="cfilecd58148ae688371398ed76652841a5a6"></ComponentRef>
+      <ComponentRef Id="cfile6e25e42e145c342c9c2537107d03a10f"></ComponentRef>
+      <ComponentRef Id="cfilefe3b781367673b2f8cc1f3cf95240473"></ComponentRef>
+      <ComponentRef Id="cfile800505d54d373b9eb717040dad918c54"></ComponentRef>
+      <ComponentRef Id="cfileccd24b5af5d63918a17fdc9a7bbc9394"></ComponentRef>
+      <ComponentRef Id="cfilea3b21980a218327e9f589c5bec86036b"></ComponentRef>
+      <ComponentRef Id="cfile931bce33e20c3d7aba37e4e15d92f99a"></ComponentRef>
+      <ComponentRef Id="cfile741fe330cc6a3e1fb2e9b69312f577ac"></ComponentRef>
+      <ComponentRef Id="cfile77fe4083097831bdbaa92c9978c9279e"></ComponentRef>
+      <ComponentRef Id="cfile035a07c4d963304887d5d42c099eadd7"></ComponentRef>
+      <ComponentRef Id="cfile27a94715f43a38f0b59792a3c935d6ba"></ComponentRef>
+      <ComponentRef Id="cfile1d252731852a3cd79a427c6b087220f2"></ComponentRef>
+      <ComponentRef Id="cfile7ee9ad88bf4033658b6cced645142a01"></ComponentRef>
+      <ComponentRef Id="cfile2fdb8d1b765634969f2e5e6c21529452"></ComponentRef>
+      <ComponentRef Id="cfile9cf282d0fb2e379a9128b3b4c373e428"></ComponentRef>
+      <ComponentRef Id="cfile6ba894d434c6390bbcea2e4ba94e02ad"></ComponentRef>
+      <ComponentRef Id="cfileb30094b26e503dc997d6b641d7a9f486"></ComponentRef>
+      <ComponentRef Id="cfiledd66bcb1c5723659aa525cf915ab9bb6"></ComponentRef>
+      <ComponentRef Id="cfile920e0f8b040c3cba99b4e05e9c7b3cc0"></ComponentRef>
+      <ComponentRef Id="cfile2dd6bbb3a639382a8b5c3f218f7da385"></ComponentRef>
+      <ComponentRef Id="cfilef64e0b1b267b36379db4b39a66689709"></ComponentRef>
+      <ComponentRef Id="cfilef19d9ce7140c379d9bb25fc63e6be95f"></ComponentRef>
+      <ComponentRef Id="cfile8c446f9e554b3b54ac0f2dd0599d5c75"></ComponentRef>
+      <ComponentRef Id="cfile589506d5333336218bc4b6b3fc60be76"></ComponentRef>
+      <ComponentRef Id="cfilef04ea9b702033f5584194ff9e867b7ac"></ComponentRef>
+      <ComponentRef Id="cfile987393bfbef13fc8bef210a8c99482b1"></ComponentRef>
+      <ComponentRef Id="cfile50d8728d6a7a38f2b05796ee1c18944c"></ComponentRef>
+      <ComponentRef Id="cfile6f5a7dd50e5736d2b891fc060f72001b"></ComponentRef>
+      <ComponentRef Id="cfilee7956724e65a3018a487947ff29096d5"></ComponentRef>
+      <ComponentRef Id="cfile91d1a6b4c55c3932aed7e85b138ebb91"></ComponentRef>
+      <ComponentRef Id="cfile544d7b96f30b30c4a775694f7abacc10"></ComponentRef>
+      <ComponentRef Id="cfile0575f23782fc3c8088352bd75869c42c"></ComponentRef>
+      <ComponentRef Id="cfile0dbcf5ef797832be87680b581d8e56a2"></ComponentRef>
+      <ComponentRef Id="cfile7320948d67ae31f2b50b68d50db64963"></ComponentRef>
+      <ComponentRef Id="cfileef91bb691dd735ceac2288acae49c363"></ComponentRef>
+      <ComponentRef Id="cfile6f7c7d5343c83a2ca20a2c7c143169f7"></ComponentRef>
+      <ComponentRef Id="cfile9ee896bec7b1305dbffa665f502c6b6f"></ComponentRef>
+      <ComponentRef Id="cfile6813f9ddc50d3d2ab4d55e4fa476e5b6"></ComponentRef>
+      <ComponentRef Id="cfile148f3846c5473f7e990b746f50e1fa4d"></ComponentRef>
+      <ComponentRef Id="cfile43b8a7edec3b3abd8b45cba46a6dd8ce"></ComponentRef>
+      <ComponentRef Id="cfile5f8b27e96d1a394a93c12f03080d9d6c"></ComponentRef>
+      <ComponentRef Id="cfiled9e9cc388bb63688945c8f917327076b"></ComponentRef>
+      <ComponentRef Id="cfile6beef31dd71d30f0b4fb1c742f738975"></ComponentRef>
+      <ComponentRef Id="cfile72c28c1bc90039819fd4dd73ae670aca"></ComponentRef>
+      <ComponentRef Id="cfile5bf74ba060443eadaf88032f03ff5280"></ComponentRef>
+      <ComponentRef Id="cfile7d9a506d46373ebc9edb5a25dfcefc33"></ComponentRef>
+      <ComponentRef Id="cfiled34513baf13138c0980a0e1e95698670"></ComponentRef>
+      <ComponentRef Id="cfile968edb2f3e283400922e2a9c7d3860cc"></ComponentRef>
+      <ComponentRef Id="cfilebd5077779b6a3ed2aa5ef8b1a859ac9a"></ComponentRef>
+      <ComponentRef Id="cfile4903e11c9d803525b88b35ff06f85bc5"></ComponentRef>
+      <ComponentRef Id="cfilefa556ed1f3953f4d96b5186a472f1eda"></ComponentRef>
+      <ComponentRef Id="cfiledf5ca642dd9a3a0aa3561eba8f8df28f"></ComponentRef>
+      <ComponentRef Id="cfilec6cc04cc8a973247a7b7b2ebdee3fcca"></ComponentRef>
+      <ComponentRef Id="cfilee59a3803a0dd34b5a320916fef733f8a"></ComponentRef>
+      <ComponentRef Id="cfilef4417da55e3633ffbd6c7c2ea7b520f1"></ComponentRef>
+      <ComponentRef Id="cfile7928fa2d45ce3375bbe9b62e245ff9d7"></ComponentRef>
+      <ComponentRef Id="cfile36f487fed9dd38c48340ad1d3770000f"></ComponentRef>
+      <ComponentRef Id="cfile92005861b6c63e318442f946199376f9"></ComponentRef>
+      <ComponentRef Id="cfile2789075c1e3c3d62bf61c3f391e81eaa"></ComponentRef>
+      <ComponentRef Id="cfilee9dca98c5bc43b40ab8f1f5d80729dbf"></ComponentRef>
+      <ComponentRef Id="cfile4183df5c743e3349a0594b4298331a0b"></ComponentRef>
+      <ComponentRef Id="cfile8712bca0fae437548b30e705a0a78ee0"></ComponentRef>
+      <ComponentRef Id="cfileec7edd46a49d33b8afb4a7ffdb801df7"></ComponentRef>
+      <ComponentRef Id="cfilee8b0a277c0443d42bd30f6ef17b8461e"></ComponentRef>
+      <ComponentRef Id="cfilef642e100daf93a71bdbf649246efb735"></ComponentRef>
+      <ComponentRef Id="cfilea89abedbae77350582cab6b930bcd024"></ComponentRef>
+      <ComponentRef Id="cfileb9bf07d67b3336019acb238ef9c1fadd"></ComponentRef>
+      <ComponentRef Id="cfile4eea489136293baa915c65ad256e04dd"></ComponentRef>
+      <ComponentRef Id="cfile85a4e33d6d573f4f9ec256382ca6df24"></ComponentRef>
+      <ComponentRef Id="cfile82207aab4be534b1926be8df36bcbc44"></ComponentRef>
+      <ComponentRef Id="cfile1fdeac3444953088bb814123683b4e1a"></ComponentRef>
+      <ComponentRef Id="cfiledb4ea206621e394aac4756e9617ce79d"></ComponentRef>
+      <ComponentRef Id="cfilea5c4078e9a943a1bb636e0f699735369"></ComponentRef>
+      <ComponentRef Id="cfilef590100e993f3f718b326dedf646ce4c"></ComponentRef>
+      <ComponentRef Id="cfile5414037756733977bf977b917e94b165"></ComponentRef>
+      <ComponentRef Id="cfilef098c457640131c2882b271729db27eb"></ComponentRef>
+      <ComponentRef Id="cfile2ab4aac32d9339d79cfcce3202c97b74"></ComponentRef>
+      <ComponentRef Id="cfileeb95acfbd3d731b7b31d7042b289b3fe"></ComponentRef>
+      <ComponentRef Id="cfile5f1ea49d38733b0889485ce8770d7a1f"></ComponentRef>
+      <ComponentRef Id="cfile5f5b6ccfa7a73378967992c108a36cd8"></ComponentRef>
+      <ComponentRef Id="cfile6449fbc15eb7360a85b36231790d7742"></ComponentRef>
+      <ComponentRef Id="cfile977a960d186f37a4aa8f9786b457745a"></ComponentRef>
+      <ComponentRef Id="cfilebabbebcd7c993cc999d4231d3bb26e83"></ComponentRef>
+      <ComponentRef Id="cfilea7dd5107132a300995240f15d5ad8285"></ComponentRef>
+      <ComponentRef Id="cfile5ad2c841972a3789a81a830ff17e5967"></ComponentRef>
+      <ComponentRef Id="cfileef18fbff6c233858beb19712296531e3"></ComponentRef>
+      <ComponentRef Id="cfile7927518abdc036ed8538c48f2108947f"></ComponentRef>
+      <ComponentRef Id="cfiled78727bf16eb3b60a5337074e6c1866e"></ComponentRef>
+      <ComponentRef Id="cfile10b7566b08743cd396d393b587f71605"></ComponentRef>
+      <ComponentRef Id="cfilebbef28601bf43a0fab7a0a27252e0a08"></ComponentRef>
+      <ComponentRef Id="cfilee3e0fa642a7f318db4e675275da8a5c3"></ComponentRef>
+      <ComponentRef Id="cfile4e53dd9c2b5d35b4ae37729eb85b2f17"></ComponentRef>
+      <ComponentRef Id="cfile6cdffda1809c37c084ea8864cfda5ad3"></ComponentRef>
+      <ComponentRef Id="cfile7901f84adcf33cb6b42f68077f876feb"></ComponentRef>
+      <ComponentRef Id="cfile2a6a8a52ed0736d489bfc71b16feb2c3"></ComponentRef>
+      <ComponentRef Id="cfile9c961237cb7b31feb185d0a70c7f6e5f"></ComponentRef>
+      <ComponentRef Id="cfile0f4f141aad343d12bd4b6a5d54ba8daa"></ComponentRef>
+      <ComponentRef Id="cfile08341b86460b3c82bb25dc5f0ef3f451"></ComponentRef>
+      <ComponentRef Id="cfile62d7b0fa975c373aa3fe3d51723d0c98"></ComponentRef>
+      <ComponentRef Id="cfile73732fc1b32e357880239e94b3c7485c"></ComponentRef>
+      <ComponentRef Id="cfileacb0029ae09b3b3b85018ae2e3cf95d7"></ComponentRef>
+      <ComponentRef Id="cfileccc5c484362f3fc89af4fe8a46303381"></ComponentRef>
+      <ComponentRef Id="cfilee45c4147a1313ecd89e3eedb2ea0fd75"></ComponentRef>
+      <ComponentRef Id="cfile463e16e399043ee3840d4ff6a5b518e4"></ComponentRef>
+      <ComponentRef Id="cfilede8b32f80a213cdb965ed9e673af7b9e"></ComponentRef>
+      <ComponentRef Id="cfilea209e42791ff3112b7fa706e072314f2"></ComponentRef>
+      <ComponentRef Id="cfilefa7576c3dcd53067873cb220507e610a"></ComponentRef>
+      <ComponentRef Id="cfile8e1c572076c23e64babd0c9ef5e69ce8"></ComponentRef>
+      <ComponentRef Id="cfilea9afc0450c3f3778ad893db2f8ec482f"></ComponentRef>
+      <ComponentRef Id="cfile7a5c125d70d13e0e826fdd99a4d484b2"></ComponentRef>
+      <ComponentRef Id="cfileea70abdec1f7399e833b8d06cd802086"></ComponentRef>
+      <ComponentRef Id="cfile8cd7d8dd106c331d9a69d415953423fd"></ComponentRef>
+      <ComponentRef Id="cfile69721213e9e53d81aa407c9ae4fca894"></ComponentRef>
+      <ComponentRef Id="cfile2b71777a7ad638a8a4b2976bfb2541d7"></ComponentRef>
+      <ComponentRef Id="cfile8613b7b39609354cbbe894624e87210d"></ComponentRef>
+      <ComponentRef Id="cfile2bee21ad8f5b32c899333416c52a7222"></ComponentRef>
+      <ComponentRef Id="cfile4b4ca80665dc395f9e2218a903abf4d1"></ComponentRef>
+      <ComponentRef Id="cfilec3805c869162372a90477e2b352f8e6d"></ComponentRef>
+      <ComponentRef Id="cfile890ff3bc67c135b39a538483cd362e4a"></ComponentRef>
+      <ComponentRef Id="cfile5e1f8c8e9edc3d7c961c1020ee416957"></ComponentRef>
+      <ComponentRef Id="cfile47d57676c1db364788febaaf4ed18569"></ComponentRef>
+      <ComponentRef Id="cfilea43f830c209933f6b04eb3c2284e0eff"></ComponentRef>
+      <ComponentRef Id="cfile4a8f0c4145703bfc8b8695b145c28370"></ComponentRef>
+      <ComponentRef Id="cfileb1766a3d11ae3036b055a4a850f5da4d"></ComponentRef>
+      <ComponentRef Id="cfile3e9b44e681943344b82b209ee8ad73f7"></ComponentRef>
+      <ComponentRef Id="cfile6d9ce4cb6bdf3f6f9b24ebfc65bac782"></ComponentRef>
+      <ComponentRef Id="cfilec060d506679a3903b1ff75ca06aee1a8"></ComponentRef>
+      <ComponentRef Id="cfileb54f801d4ef831aea870dee318d3e651"></ComponentRef>
+      <ComponentRef Id="cfileb7f25dfef9c0389fb25d5bf599deae2a"></ComponentRef>
+      <ComponentRef Id="cfile57f1e4a01ad83188ad0c39fda43752ed"></ComponentRef>
+      <ComponentRef Id="cfile0566e653e9ae32ad84481ac3f202a898"></ComponentRef>
+      <ComponentRef Id="cfile5e290de5135b3b8499cc829dc8143504"></ComponentRef>
+      <ComponentRef Id="cfilec32080731f2a33c9a43011e3868eb9e7"></ComponentRef>
+      <ComponentRef Id="cfileeb140c6cc49c30cfb587d0c49e93f655"></ComponentRef>
+      <ComponentRef Id="cfilefd7f5f4086ef35129470b8fe26a820ef"></ComponentRef>
+      <ComponentRef Id="cfile13acf131414a356db4900fd4f431a6f4"></ComponentRef>
+      <ComponentRef Id="cfile27fdca3ac78b3857b78440fb823583c1"></ComponentRef>
+      <ComponentRef Id="cfileaaaab2cdf48e3ce3bf76e368ffff8818"></ComponentRef>
+      <ComponentRef Id="cfile66d1d259d6b9366087fc5022a6543c88"></ComponentRef>
+      <ComponentRef Id="cfile4b0fb6b4ed89362599d028b2e6110ad7"></ComponentRef>
+      <ComponentRef Id="cfilea00d1c8e9cf43226950a03042d6ad409"></ComponentRef>
+      <ComponentRef Id="cfile4e6810dc2d4433ecb44e2e5a2fae04fd"></ComponentRef>
+      <ComponentRef Id="cfile8a5efcbff12d3f488c6fc2e04d8c25b8"></ComponentRef>
+      <ComponentRef Id="cfile045d8ee653bb30069cefdf65e63aadfc"></ComponentRef>
+      <ComponentRef Id="cfile7ba917fefca03dea960aaa56152e406b"></ComponentRef>
+      <ComponentRef Id="cfile42cd07cfa71e37f6a58a0794bb262503"></ComponentRef>
+      <ComponentRef Id="cfile14368850e73f3c8fbeb2d132b44a4808"></ComponentRef>
+      <ComponentRef Id="cfileab799eb7f72c3e8e9e301dfdc98be0c7"></ComponentRef>
+      <ComponentRef Id="cfile5af03526a0a639e3af85beb12e34d9a9"></ComponentRef>
+      <ComponentRef Id="cfilee5dbe130c27537c28098d77be7973906"></ComponentRef>
+      <ComponentRef Id="cfile6fc62b25eb333d5486105ebd7f83f10d"></ComponentRef>
+      <ComponentRef Id="cfile14e7cf1867b8344f93e8a2a98a764cd7"></ComponentRef>
+      <ComponentRef Id="cfilea4dfe168ad5239e6965caa1f825a4e1e"></ComponentRef>
+      <ComponentRef Id="cfilee0d00eee1390351d96773c0985e20cda"></ComponentRef>
+      <ComponentRef Id="cfilefdf417d891053282a0009f64996c9ecb"></ComponentRef>
+      <ComponentRef Id="cfile358f4cfe5b563484aeb28b7aecbd91c6"></ComponentRef>
+      <ComponentRef Id="cfile1222d9ee96123796b4268002d435135a"></ComponentRef>
+      <ComponentRef Id="cfiled4b06b31fb623c598059562884b108f1"></ComponentRef>
+      <ComponentRef Id="crm_rf48431aecbd69377ea800d62616352f20"></ComponentRef>
+    </ComponentGroup>
+    <Property Id="JP_INSTALL_STARTMENU_SHORTCUT" Value="1"></Property>
+    <Property Id="JP_INSTALL_DESKTOP_SHORTCUT" Value="1"></Property>
+  </Fragment>
+  <Fragment></Fragment>
+</Wix>

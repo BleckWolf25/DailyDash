@@ -37,10 +37,11 @@ public class UpdateDialog {
         VBox root = new VBox(20);
         root.setPadding(new Insets(24));
         root.getStyleClass().add("dialog-root");
-        root.setStyle("-fx-background-color: -color-surface;");
+        root.setStyle("-fx-background-color: #191c1e;");
 
         if (isLightTheme) {
             root.getStyleClass().add("light-theme");
+            root.setStyle("-fx-background-color: #f7f9fb;");
         }
 
         // Header
@@ -131,6 +132,51 @@ public class UpdateDialog {
         } catch (Exception ignored) {}
         stage.setScene(scene);
 
+        stage.showAndWait();
+    }
+
+    public static void showMessageDialog(String title, String message, boolean isLightTheme) {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle(title);
+        stage.setResizable(false);
+        try {
+            stage.getIcons().add(new javafx.scene.image.Image(UpdateDialog.class.getResourceAsStream("/images/logo.png")));
+        } catch (Exception ignored) {}
+
+        VBox root = new VBox(18);
+        root.setPadding(new Insets(24));
+        root.getStyleClass().add("dialog-root");
+        root.setStyle("-fx-background-color: #191c1e;");
+
+        if (isLightTheme) {
+            root.getStyleClass().add("light-theme");
+            root.setStyle("-fx-background-color: #f7f9fb;");
+        }
+
+        Label titleLabel = new Label(title);
+        titleLabel.getStyleClass().add("dialog-title");
+        titleLabel.setStyle("-fx-text-fill: -color-on-surface; -fx-font-size: 17px; -fx-font-weight: 800;");
+
+        Label msgLabel = new Label(message);
+        msgLabel.setWrapText(true);
+        msgLabel.setStyle("-fx-text-fill: -color-on-surface-variant; -fx-font-size: 13.5px; -fx-line-spacing: 1.2;");
+
+        HBox buttonBox = new HBox();
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+
+        Button okBtn = new Button("OK");
+        okBtn.getStyleClass().add("primary-btn");
+        okBtn.setOnAction(e -> stage.close());
+        buttonBox.getChildren().add(okBtn);
+
+        root.getChildren().addAll(titleLabel, msgLabel, buttonBox);
+
+        Scene scene = new Scene(root, 400, 200);
+        try {
+            scene.getStylesheets().add(UpdateDialog.class.getResource("/css/styles.css").toExternalForm());
+        } catch (Exception ignored) {}
+        stage.setScene(scene);
         stage.showAndWait();
     }
 }
