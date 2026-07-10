@@ -89,7 +89,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Checkstyle Plugin (commented out for fast clean builds)
+            <!-- Checkstyle Plugin (Linter) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -103,13 +103,12 @@
                 <executions>
                     <execution>
                         <id>validate</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin> -->
+            </plugin>
 
             <!-- JavaFX Maven Plugin (Allows running via 'mvn javafx:run') -->
             <plugin>
@@ -154,7 +153,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- GluonFX Plugin (Builds Native Android/iOS/Desktop applications via GraalVM) -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
@@ -228,8 +227,6 @@
                                 <argument>${jpackage.icon}</argument>
                                 <argument>--add-modules</argument>
                                 <argument>java.base,java.sql,java.naming,java.desktop,java.xml,java.scripting,java.management,jdk.unsupported,jdk.crypto.ec</argument>
-                                <argument>--win-shortcut</argument>
-                                <argument>--win-menu</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -247,9 +244,59 @@
                 </os>
             </activation>
             <properties>
-                <jpackage.type>exe</jpackage.type>
+                <jpackage.type>app-image</jpackage.type>
                 <jpackage.icon>src/main/resources/images/logo.ico</jpackage.icon>
             </properties>
+        </profile>
+        <profile>
+            <id>windows-installer</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>jpackage</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${java.home}/bin/jpackage</executable>
+                                    <arguments>
+                                        <argument>--type</argument>
+                                        <argument>exe</argument>
+                                        <argument>--input</argument>
+                                        <argument>${project.build.directory}/jpackage-input</argument>
+                                        <argument>--dest</argument>
+                                        <argument>${project.build.directory}/dist</argument>
+                                        <argument>--name</argument>
+                                        <argument>DailyDash</argument>
+                                        <argument>--app-version</argument>
+                                        <argument>${project.version}</argument>
+                                        <argument>--main-jar</argument>
+                                        <argument>dailydash.jar</argument>
+                                        <argument>--main-class</argument>
+                                        <argument>com.dailydash.Launcher</argument>
+                                        <argument>--vendor</argument>
+                                        <argument>DailyDash</argument>
+                                        <argument>--description</argument>
+                                        <argument>${project.description}</argument>
+                                        <argument>--icon</argument>
+                                        <argument>src/main/resources/images/logo.ico</argument>
+                                        <argument>--add-modules</argument>
+                                        <argument>java.base,java.sql,java.naming,java.desktop,java.xml,java.scripting,java.management,jdk.unsupported,jdk.crypto.ec</argument>
+                                        <argument>--win-shortcut</argument>
+                                        <argument>--win-menu</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>macos</id>
