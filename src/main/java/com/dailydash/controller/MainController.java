@@ -258,6 +258,12 @@ public class MainController {
                 updateFilters();
             }
         });
+
+        // Silent automatic startup check for GitHub release updates
+        com.dailydash.service.UpdateService.checkForUpdatesAsync(
+                release -> com.dailydash.view.UpdateDialog.show(release, isLightTheme),
+                msg -> {}
+        );
     }
 
     @FXML

@@ -110,7 +110,52 @@ public class SettingsView {
         clearRow.getChildren().addAll(clearDesc, clearDoneBtn);
         dataBox.getChildren().addAll(dataTitle, clearRow);
 
-        root.getChildren().addAll(headerBox, appearBox, dataBox);
+        // Section 3: App Updates & Releases
+        VBox updateBox = new VBox(14);
+        updateBox.setPadding(new Insets(20));
+        updateBox.getStyleClass().add("settings-section-card");
+
+        Label updateTitle = new Label("Application Updates");
+        updateTitle.getStyleClass().add("section-title");
+
+        HBox updateRow = new HBox(16);
+        updateRow.setAlignment(Pos.CENTER_LEFT);
+
+        VBox updateInfo = new VBox(4);
+        Label verLabel = new Label("Current Version: v" + com.dailydash.service.UpdateService.CURRENT_VERSION);
+        verLabel.setStyle("-fx-text-fill: -color-on-surface; -fx-font-size: 13.5px; -fx-font-weight: 700;");
+        Label repoLabel = new Label("Checking releases from GitHub (" + com.dailydash.service.UpdateService.GITHUB_REPO + ")");
+        repoLabel.setStyle("-fx-text-fill: -color-on-surface-variant; -fx-font-size: 12px;");
+        updateInfo.getChildren().addAll(verLabel, repoLabel);
+
+        Button checkBtn = new Button("Check for Updates");
+        checkBtn.getStyleClass().add("btn-primary");
+        checkBtn.setOnAction(e -> {
+            checkBtn.setText("Checking...");
+            checkBtn.setDisable(true);
+            boolean isLight = "light".equals(dataService.getSetting("theme", "dark"));
+            com.dailydash.service.UpdateService.checkForUpdatesAsync(
+                release -> {
+                    checkBtn.setText("Check for Updates");
+                    checkBtn.setDisable(false);
+                    com.dailydash.view.UpdateDialog.show(release, isLight);
+                },
+                msg -> {
+                    checkBtn.setText("Check for Updates");
+                    checkBtn.setDisable(false);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Update Check");
+                    alert.setHeaderText(null);
+                    alert.setContentText(msg);
+                    alert.showAndWait();
+                }
+            );
+        });
+
+        updateRow.getChildren().addAll(updateInfo, checkBtn);
+        updateBox.getChildren().addAll(updateTitle, updateRow);
+
+        root.getChildren().addAll(headerBox, appearBox, dataBox, updateBox);
 
         ScrollPane scrollPane = new ScrollPane(root);
         scrollPane.setFitToWidth(true);
