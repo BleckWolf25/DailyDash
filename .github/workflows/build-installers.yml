@@ -19,14 +19,14 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
-      
+
       - name: Set up JDK 21
         uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
           cache: maven
-      
+
       - name: Install WiX Toolset
         shell: pwsh
         run: |
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           mvn clean package -DskipTests -Pwindows-installer "-Djpackage.type=exe"
-          
+
       - name: Build Windows MSI
         shell: bash
         run: |
@@ -68,7 +68,7 @@ jobs:
         with:
           name: DailyDash-Windows-EXE
           path: target/dist/*.exe
-          
+
       - name: Upload Windows MSI Installer
         uses: actions/upload-artifact@v7
         with:
@@ -88,7 +88,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
-      
+
       - name: Set up JDK 21
         uses: actions/setup-java@v5
         with:
@@ -106,7 +106,7 @@ jobs:
       - name: Build macOS PKG
         run: |
           mvn package -DskipTests -Pmacos -Djpackage.type=pkg
-          
+
       - name: Build macOS App-Image & Ad-Hoc Sign
         run: |
           mvn package -DskipTests -Pmacos -Djpackage.type=app-image
@@ -136,7 +136,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      
+
       - name: Set up JDK 21
         uses: actions/setup-java@v5
         with:
@@ -151,7 +151,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fakeroot binutils rpm file libfuse2
-          
+
       - name: Build Linux DEB
         run: |
           mvn clean package -DskipTests -Plinux -Djpackage.type=deb
@@ -163,7 +163,7 @@ jobs:
       - name: Build Linux App-Image & Package Universal Formats
         run: |
           mvn package -DskipTests -Plinux -Djpackage.type=app-image
-          
+
           # Build AppImage
           mkdir -p target/dist/AppDir/usr
           cp -r target/dist/DailyDash/* target/dist/AppDir/usr/
@@ -231,90 +231,19 @@ jobs:
             target/dist/PKGBUILD
             target/dist/SHA256SUMS
 
-  # Build Android APK (requires GraalVM + Android SDK)
-  build-android:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      
-      - name: Set up JDK 21
-        uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Run Checkstyle
-        run: mvn checkstyle:check
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-      
-      - name: Set up GraalVM
-        uses: graalvm/setup-graalvm@v1
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'graalvm-community'
-          native-image-job-reports: true
-          cache: 'maven'
-      
-      - name: Build Android APK
-        run: |
-          mvn clean package -Pandroid -DskipTests
-          
-      - name: Upload Android APK
-        uses: actions/upload-artifact@v7
-        with:
-          name: DailyDash-Android-APK
-          path: target/gluonfx/android/*.apk
-
-  # Build iOS IPA (macOS only)
-  build-ios:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v7
-      
-      - name: Set up JDK 21
-        uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Run Checkstyle
-        run: mvn checkstyle:check
-
-      - name: Set up GraalVM
-        uses: graalvm/setup-graalvm@v1
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'graalvm-community'
-          native-image-job-reports: true
-          cache: 'maven'
-      
-      - name: Build iOS IPA
-        run: |
-          mvn clean package -Pios -DskipTests
-          
-      - name: Upload iOS IPA
-        uses: actions/upload-artifact@v7
-        with:
-          name: DailyDash-iOS-IPA
-          path: target/gluonfx/ios/*.ipa
-
   # Create Release with all installers
   create-release:
     if: startsWith(github.ref, 'refs/tags/')
-    needs: [build-windows, build-macos, build-linux, build-android, build-ios]
+    needs: [build-windows, build-macos, build-linux]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      
+
       - name: Download all artifacts
         uses: actions/download-artifact@v8
         with:
           path: dist
-      
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
         with:
@@ -322,20 +251,20 @@ jobs:
             dist/*/**/*
           body: |
             # DailyDash Release
-            
+
             Download the installer or package for your platform:
-            
+
             ### Windows (Self-Signed)
             - **Installer (EXE)**: `DailyDash-*.exe`
             - **Installer (MSI)**: `DailyDash-*.msi`
             - **Portable ZIP**: `DailyDash-Windows-Portable.zip`
             - **Certificate**: `DailyDash-Windows-Certificate.cer`
-            
+
             ### macOS (Ad-Hoc Signed)
             - **Disk Image (DMG)**: `DailyDash-*.dmg`
             - **Installer (PKG)**: `DailyDash-*.pkg`
             - **Portable ZIP**: `DailyDash-macOS-Portable.zip`
-            
+
             ### Linux
             - **Debian / Ubuntu (DEB)**: `DailyDash-*.deb`
             - **Fedora / RHEL / openSUSE (RPM)**: `DailyDash-*.rpm`
@@ -343,10 +272,5 @@ jobs:
             - **Portable Archives**: `DailyDash-Linux-Portable.tar.gz` & `.zip`
             - **Arch Linux**: `PKGBUILD`
             - **Checksums**: `SHA256SUMS`
-            
-            ### Mobile (GraalVM Native)
-            - **Android (APK)**: `DailyDash.apk`
-            - **iOS (IPA)**: `DailyDash.ipa`
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
