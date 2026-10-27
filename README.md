@@ -54,8 +54,6 @@ DailyDash is a premium offline-first desktop productivity application. It provid
 - `mvn clean test` - Run JUnit 5 unit and integration tests
 - `mvn clean package` - Build standalone runnable shaded fat JAR
 - `mvn gluonfx:build -Pdesktop` - Build native macOS/Windows desktop application executable via GraalVM
-- `mvn gluonfx:build -Pandroid` - Package native Android mobile application package (.apk/.aab)
-- `mvn gluonfx:build -Pios` - Package native iOS mobile application package
 - `mvn jpro:run` - Host JavaFX app on local server for web browser execution
 
 ## 🏗️ Project Structure
